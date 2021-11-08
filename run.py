@@ -24,7 +24,7 @@ dave = Player(["bread", "clothes"])
 
 print("daves weapin", dave.weapon)
 print("daves items", dave.items)
-print("daves health is", dave.health)
+print("daves health is", dave.hp)
 
 dave.weapon = "sword"
 print("daves new weapon is a", dave.weapon)
