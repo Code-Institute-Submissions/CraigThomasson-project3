@@ -22,7 +22,12 @@ class Goblin_archer(Goblin):
 
 def get_player_name():
     player_characrer = Player(["fire starter", "spare clothes"])
-    player_characrer.name = input("hello traveller what is your name?")
-    print(player_characrer.name)
+    player_characrer.name = input("hello traveller what is your name?: ")
+    print(f'well met {player_characrer.name}')
+
+def introduction(player_characrer):
+    print("you are traveliing on the raod to new town when you see somthing in the road./n")
+    
 
 get_player_name()
+
