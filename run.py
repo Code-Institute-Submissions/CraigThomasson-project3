@@ -16,20 +16,13 @@ class Goblin(Entity):
         self.items = items
         items = []
 
-class goblin_archer(Goblin):
+class Goblin_archer(Goblin):
     def __init__(self):
         Goblin.__init__(self, [])
 
-dave = Player(["bread", "clothes"])
+def get_player_name():
+    player_characrer = Player(["fire starter", "spare clothes"])
+    player_characrer.name = input("hello traveller what is your name?")
+    print(player_characrer.name)
 
-print("daves weapon", dave.weapon)
-print("daves items", dave.items)
-print("daves health is", dave.hp)
-
-dave.weapon = "sword"
-print("daves new weapon is a", dave.weapon)
-dave.name = input("enter your name:")
-print(dave.name)
-enemy = goblin_archer()
-enemy.weapon = "bow"
-print(enemy.weapon)
+get_player_name()
