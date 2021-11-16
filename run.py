@@ -59,6 +59,8 @@ class Rusty_knife(Weapon):
         Weapon.__init__(self, random.randint(1, 4), "Rusty knife")
 
 
+
+
 # game functions
 
 def goblin_ambush(player_character):
