@@ -1,3 +1,4 @@
+import random
 class Entity:
     """
     base class for all player and enemy classes 
@@ -7,6 +8,11 @@ class Entity:
         self.attack = attack
         self.name = name
         self.weapon = weapon
+
+    def attack(self):
+        damage = randint(3, 9)
+        print(damage)
+
 
 class Player(Entity):
     """
@@ -44,7 +50,7 @@ def get_player_name():
     """
     player_character = Player(["fire starter", "spare clothes"])
     player_character.name = input("hello traveller what is your name?: ")
-    print(f'well met {player_character.name}! take care on these raods there are goblins on the lose.\n')
+    print(f'well met {player_character.name}! take care on these roads there are goblins on the lose.\n')
     return player_character
 
 def introduction(player_character):
@@ -57,5 +63,6 @@ def introduction(player_character):
 
 player_character = get_player_name()
 
-introduction(player_character)
+# introduction(player_character)
 
+player_character.attack()
