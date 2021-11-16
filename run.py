@@ -16,7 +16,7 @@ class Entity:
         """
         generates character attack value
         """
-        damage = random.randint(1, 6) + self.attack
+        damage = self.weapon.atk_mod + self.attack
         return(damage)
 
 
@@ -25,7 +25,7 @@ class Player(Entity):
     This will handel all stats and info for the players character
     """
     def __init__(self, items):
-        Entity.__init__(self, 10, 3, "Player", "Rusty Knife")
+        Entity.__init__(self, 10, 3, "Player", Rusty_knife())
         self.items = items
 
 class Goblin(Entity):
@@ -51,9 +51,12 @@ class Weapon:
     this is the base class for all weapons 
     """
     def __init__(self, atk_mod, name):
-        self.atk_mod =atk_mod
+        self.atk_mod = atk_mod
         self.name = name
 
+class Rusty_knife(Weapon):
+    def __init__(self):
+        Weapon.__init__(self, random.randint(1, 4), "Rusty knife")
 
 
 # game functions
