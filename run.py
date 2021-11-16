@@ -33,10 +33,10 @@ class Goblin_archer(Goblin):
         Goblin.__init__(self, [])
 
 def goblin_ambush(player_character):
-    print("you see an abandonded cart in the road.\n you see that its contets has been luted\n you hear a rusteling behind you as an arrow if fired at you buy a goblin as it emerges from cover.")
+    print("you see an abandoned cart in the road.\n you see that its contents has been looted\n you hear a rustling behind you as an arrow if fired at you buy a goblin as it emerges from cover.")
 
 def ambush_goblin(player_character):
-    print("as you neak around you notice a gblin hiding behind a bust watching the road\n")
+    print("as you sneak around you notice a goblin hiding behind a bush watching the road\n")
 
 def get_player_name():
     """
