@@ -56,10 +56,11 @@ class Weapon:
 
 class Rusty_knife(Weapon):
     def __init__(self):
-        Weapon.__init__(self, random.randint(1, 4), "Rusty knife")
+        Weapon.__init__(self, random.randint(1, 5), "Rusty knife")
 
-
-
+class scimitar(weapon):
+    def __init__(self):
+        weapon.__init__(self, random.randint(1, 7) "scimitar")
 
 # game functions
 
