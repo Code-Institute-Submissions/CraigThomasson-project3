@@ -1,4 +1,7 @@
 import random
+
+# character and NPC classes
+
 class Entity:
     """
     base class for all player and enemy classes 
@@ -9,7 +12,10 @@ class Entity:
         self.name = name
         self.weapon = weapon
 
-    def make_attack(self):
+    def make_attack(self): 
+        """
+        generates character attack value
+        """
         damage = random.randint(1, 6) + self.attack
         return(damage)
 
@@ -37,6 +43,20 @@ class Goblin_archer(Goblin):
     """
     def __init__(self):
         Goblin.__init__(self, [])
+
+# weapon classes
+
+class Weapon:
+    """
+    this is the base class for all weapons 
+    """
+    def __init__(self, atk_mod, name):
+        self.atk_mod =atk_mod
+        self.name = name
+
+
+
+# game functions
 
 def goblin_ambush(player_character):
     print("you see an abandoned cart in the road.\n you see that its contents has been looted\n you hear a rustling behind you as an arrow if fired at you buy a goblin as it emerges from cover.")
