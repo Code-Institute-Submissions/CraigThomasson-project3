@@ -6,9 +6,10 @@ class Entity:
     """
     base class for all player and enemy classes 
     """
-    def __init__(self, hp, attack, name, weapon):
-        self.hp = hp
+    def __init__(self, health, attack, speed, name, weapon):
+        self.health = health
         self.attack = attack
+        self.speed = speed
         self.name = name
         self.weapon = weapon
 
@@ -25,7 +26,7 @@ class Player(Entity):
     This will handel all stats and info for the players character
     """
     def __init__(self, items):
-        Entity.__init__(self, 10, 3, "Player", Rusty_knife())
+        Entity.__init__(self, 10, 3, 5, "Player", Rusty_knife())
         self.items = items
 
 class Goblin(Entity):
@@ -33,7 +34,7 @@ class Goblin(Entity):
     Base class for all goblin type enemies
     """
     def __init__(self, items):
-        Entity.__init__(self, 5, 2, "Goblin", "scimatar")
+        Entity.__init__(self, 5, 2, 6, "Goblin", Scimitar())
         self.items = items
         items = []
 
@@ -58,11 +59,29 @@ class Rusty_knife(Weapon):
     def __init__(self):
         Weapon.__init__(self, random.randint(1, 5), "Rusty knife")
 
-class scimitar(weapon):
+class Scimitar(Weapon):
     def __init__(self):
-        weapon.__init__(self, random.randint(1, 7) "scimitar")
+        Weapon.__init__(self, random.randint(1, 7), "Scimitar")
 
-# game functions
+#game functions
+
+def battel(player_character, enemy):
+    print("batteling")
+    if player_character.speed < enemy.speed:
+        while player_character.health > 0 and enemy.health > 0:
+            player_damage = player_character.make_attack()
+            enemy_damage = enemy.make_attack()
+            enemy_name = enemy.name
+            player_character_weapon = player_character.weapon.name
+            player_character_name = player_character.name
+            enemy_weapon = enemy.weapon.name
+            enemy.health -= player_damage
+            print(f'{player_character_name} attacks {enemy_name} with {player_character_weapon} for {player_damage} damage')
+            player_character.health -= enemy_damage
+            print(f'{enemy_name} attacks {player_character_name} with {enemy_weapon} for {enemy_damage} damage')
+            
+
+# story functions
 
 def goblin_ambush(player_character):
     print("you see an abandoned cart in the road.\n you see that its contents has been looted\n you hear a rustling behind you as an arrow if fired at you buy a goblin as it emerges from cover.")
@@ -89,7 +108,10 @@ def introduction(player_character):
 
 player_character = get_player_name()
 
+battel(player_character, Goblin("chalk, rabit"))
+
 # introduction(player_character)
 
-damage = player_character.make_attack()
-print(damage)
+
+
+
