@@ -26,7 +26,7 @@ class Player(Entity):
     This will handel all stats and info for the players character
     """
     def __init__(self, items):
-        Entity.__init__(self, 10, 3, 5, "Player", Rusty_knife())
+        Entity.__init__(self, 30, 3, 5, "Player", Rusty_knife())
         self.items = items
 
 class Goblin(Entity):
@@ -34,7 +34,7 @@ class Goblin(Entity):
     Base class for all goblin type enemies
     """
     def __init__(self, items):
-        Entity.__init__(self, 5, 2, 6, "Goblin", Scimitar())
+        Entity.__init__(self, 20, 2, 6, "Goblin", Scimitar())
         self.items = items
         items = []
 
@@ -71,15 +71,10 @@ def battel(player_character, enemy):
         while player_character.health > 0 and enemy.health > 0:
             player_damage = player_character.make_attack()
             enemy_damage = enemy.make_attack()
-            enemy_name = enemy.name
-            player_character_weapon = player_character.weapon.name
-            player_character_name = player_character.name
-            enemy_weapon = enemy.weapon.name
-            enemy.health -= player_damage
-            print(f'{player_character_name} attacks {enemy_name} with {player_character_weapon} for {player_damage} damage')
+            print(f'{player_character.name} attacks {enemy.name} with {player_character.weapon.name} for {player_damage} damage')
             player_character.health -= enemy_damage
-            print(f'{enemy_name} attacks {player_character_name} with {enemy_weapon} for {enemy_damage} damage')
-            
+            print(f'{enemy.name} attacks {player_character.name} with {enemy.weapon.name} for {enemy_damage} damage')
+            player_damage = player_character.make_attack()
 
 # story functions
 
