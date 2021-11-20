@@ -26,7 +26,7 @@ class Player(Entity):
     This will handel all stats and info for the players character
     """
     def __init__(self, items):
-        Entity.__init__(self, 30, 3, 5, "Player", Rusty_knife())
+        Entity.__init__(self, 17, 5, 5, "Player", Rusty_knife())
         self.items = items
 
 class Goblin(Entity):
@@ -34,7 +34,7 @@ class Goblin(Entity):
     Base class for all goblin type enemies
     """
     def __init__(self, items):
-        Entity.__init__(self, 20, 2, 6, "Goblin", Scimitar())
+        Entity.__init__(self, 10, 2, 6, "Goblin", Scimitar())
         self.items = items
         items = []
 
