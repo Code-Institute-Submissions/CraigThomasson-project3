@@ -20,7 +20,6 @@ class Entity:
         damage = self.weapon.atk_mod() + self.attack
         return damage
 
-
 class Player(Entity):
     """
     This will handel all stats and info for the players character
@@ -76,18 +75,28 @@ def battel(player_character, enemy):
         while player_character.health > 0 and enemy.health > 0:
             player_damage = player_character.make_atk()
             enemy_damage = enemy.make_atk()
-            print(f'{player_character.name} attacks {enemy.name} with {player_character.weapon.name} for {player_damage} damage')
-            player_character.health -= enemy_damage
-            print(f'{enemy.name} attacks {player_character.name} with {enemy.weapon.name} for {enemy_damage} damage')
-            player_damage = player_character.make_atk()
 
+            print(f'{player_character.name} attacks {enemy.name} with {player_character.weapon.name} for {player_damage} damage')
+            enemy.health -= player_damage
+            print(f"{enemy.name}'s health is now {enemy.health}\n")
+            if enemy.health <= 0:
+                print(f"you have slane the {enemy.name}")
+                break
+           
+            print(f'{enemy.name} attacks {player_character.name} with {enemy.weapon.name} for {enemy_damage} damage')
+            player_character.health -= enemy_damage
+            print(f"{player_character.name}'s health is now {player_character.health}\n")
+            if player_character.health <= 0:
+                print(f"you have been slain by the {enemy.name}....\n")
+                player_character = get_player_name()
 # story functions
 
 def goblin_ambush(player_character):
-    print("you see an abandoned cart in the road.\n you see that its contents has been looted\n you hear a rustling behind you as an arrow if fired at you buy a goblin as it emerges from cover.")
+    print("you see an abandoned cart in the road.\n The cart has been looted\n you hear a rustling behind you as a goblin charges at you from cover.")
 
 def ambush_goblin(player_character):
     print("as you sneak around you notice a goblin hiding behind a bush watching the road\n")
+    battel(player_character, Goblin("chalk, rabit"))
 
 def get_player_name():
     """
@@ -109,9 +118,7 @@ def introduction(player_character):
 
 player_character = get_player_name()
 
-battel(player_character, Goblin("chalk, rabit"))
-
-# introduction(player_character)
+introduction(player_character)
 
 
 
