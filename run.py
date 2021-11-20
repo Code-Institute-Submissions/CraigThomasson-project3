@@ -39,7 +39,7 @@ class Goblin(Entity):
 
 class Goblin_archer(Goblin):
     """
-    specilist goblin class
+    specilist goblin subclass
     """
     def __init__(self):
         Goblin.__init__(self, [])
@@ -56,8 +56,8 @@ class Weapon:
         self.name = name
     
     def atk_mod(self):
-        dameage = random.randint(self.min_atk, self.max_atk)
-        return dameage
+        damage = random.randint(self.min_atk, self.max_atk)
+        return damage
 
 class Rusty_knife(Weapon):
     def __init__(self):
