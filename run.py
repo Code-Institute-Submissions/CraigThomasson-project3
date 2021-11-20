@@ -13,12 +13,12 @@ class Entity:
         self.name = name
         self.weapon = weapon
 
-    def make_attack(self): 
+    def make_atk(self): 
         """
         generates character attack value
         """
-        damage = self.weapon.atk_mod + self.attack
-        return(damage)
+        damage = self.weapon.atk_mod() + self.attack
+        return damage
 
 
 class Player(Entity):
@@ -51,17 +51,22 @@ class Weapon:
     """
     this is the base class for all weapons 
     """
-    def __init__(self, atk_mod, name):
-        self.atk_mod = atk_mod
+    def __init__(self, min_atk, max_atk, name):
+        self.min_atk = min_atk
+        self.max_atk = max_atk
         self.name = name
+    
+    def atk_mod(self):
+        dameage = random.randint(self.min_atk, self.max_atk)
+        return dameage
 
 class Rusty_knife(Weapon):
     def __init__(self):
-        Weapon.__init__(self, random.randint(1, 5), "Rusty knife")
+        Weapon.__init__(self, 1, 5, "Rusty knife")
 
 class Scimitar(Weapon):
     def __init__(self):
-        Weapon.__init__(self, random.randint(1, 7), "Scimitar")
+        Weapon.__init__(self, 1, 7, "Scimitar")
 
 #game functions
 
@@ -69,12 +74,12 @@ def battel(player_character, enemy):
     print("batteling")
     if player_character.speed < enemy.speed:
         while player_character.health > 0 and enemy.health > 0:
-            player_damage = player_character.make_attack()
-            enemy_damage = enemy.make_attack()
+            player_damage = player_character.make_atk()
+            enemy_damage = enemy.make_atk()
             print(f'{player_character.name} attacks {enemy.name} with {player_character.weapon.name} for {player_damage} damage')
             player_character.health -= enemy_damage
             print(f'{enemy.name} attacks {player_character.name} with {enemy.weapon.name} for {enemy_damage} damage')
-            player_damage = player_character.make_attack()
+            player_damage = player_character.make_atk()
 
 # story functions
 
@@ -100,6 +105,7 @@ def introduction(player_character):
         goblin_ambush(player_character)
     if player_choice == "option 2":
         ambush_goblin(player_character)
+
 
 player_character = get_player_name()
 
