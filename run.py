@@ -39,7 +39,7 @@ class Goblin(Entity):
 
 class Goblin_archer(Goblin):
     """
-    specilist goblin subclass
+    specialist goblin subclass
     """
     def __init__(self):
         Goblin.__init__(self, [])
@@ -69,8 +69,7 @@ class Scimitar(Weapon):
 
 #game functions
 
-def battel(player_character, enemy):
-    print("batteling")
+def battle(player_character, enemy):
     if player_character.speed < enemy.speed:
         while player_character.health > 0 and enemy.health > 0:
             player_damage = player_character.make_atk()
@@ -89,20 +88,30 @@ def battel(player_character, enemy):
             if player_character.health <= 0:
                 print(f"you have been slain by the {enemy.name}....\n")
                 player_character = get_player_name()
+
+def battle_option(player, enemy):
+    print(f"you are now in combat with a {enemy.name} you can: attack, change weapon, use item")
+    choice = input("what will you do?:...")
+
+
 # story functions
 
 def goblin_ambush(player_character):
-    print("you see an abandoned cart in the road.\n The cart has been looted\n you hear a rustling behind you as a goblin charges at you from cover.")
+    print("you see an abandoned cart in the road.\n The cart has been looted\n you hear a rustling behind you as a goblin charges at you from cover.\n")
 
 def ambush_goblin(player_character):
     print("as you sneak around you notice a goblin hiding behind a bush watching the road\n")
-    battel(player_character, Goblin("chalk, rabit"))
+    choice = input("what would you liek to do?\n type 'option 1' to attack\n type 'option 2' to sneak past....\n:")
+    if choice == "option 1":
+        battle(player_character, Goblin("chalk, rabit"))
+    if choice == "option 2":
+        print("more content coming soon...")
 
 def get_player_name():
     """
     used to initiat the game and get the players name inputted to the player class
     """
-    player_character = Player(["fire starter", "spare clothes"])
+    player_character = Player(["fire starter"])
     player_character.name = input("hello traveller what is your name?: ")
     print(f'well met {player_character.name}! take care on these roads there are goblins on the loose.\n')
     return player_character
