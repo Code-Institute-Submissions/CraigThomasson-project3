@@ -117,6 +117,9 @@ def battle_option(player, enemy):
         print("weapon option")
         player.change_weapon()
 
+def input_validation(input, *args):
+    valid_input = input.replace(" ", "")
+    valid_input = valid_input.lower()
 
 # story functions
 
