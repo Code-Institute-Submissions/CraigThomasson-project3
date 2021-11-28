@@ -107,19 +107,26 @@ def battle(player_character, enemy):
 
 def battle_option(player, enemy):
     """
-    Gives the player some options during combat. 
+    Gives the player some options during combat 
     """
     print(f"you are in combat with a {enemy.name} you can: Attack or change weapon")
     choice = input("what will you do?:...\n To attack type: option 1\n To change weapon type: option 2: ")
-    if choice == "option 1":
+    valid_choice = input_validation(choice, "option1", "option2")
+    if valid_choice == "option 1":
         print("atck option")
-    if choice == "option 2":
+    if valid_choice == "option 2":
         print("weapon option")
         player.change_weapon()
 
-def input_validation(input, *args):
-    valid_input = input.replace(" ", "")
-    valid_input = valid_input.lower()
+def input_validation(choice, *args):
+    valid_choice = choice.replace(" ", "")
+    valid_choice = valid_choice.lower()
+    while valid_choice not in args: 
+        print(valid_choice)
+        print("Invalid choice please use one of the following options to continie", args)
+        valid_choice = input(f'Enter choice here..:').replace(" ", "").lower()
+        if valid_choice in args:
+            return valid_choice
 
 # story functions
 
