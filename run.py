@@ -30,6 +30,7 @@ class Entity:
             weapon_list.append(weapon.name)
         print(f'your current weapon list is: {weapon_list}. {self.weapon.name} is equipped')
         weapon_choice = input(f'type the  name of the weapon you would like to equip: ')
+        weapon_choice = weapon_input_validation(weapon_choice, weapon_list)
         for weapon in self.weapon_inventory:
             if weapon.name == weapon_choice:
                 self.weapon = weapon
@@ -111,18 +112,30 @@ def battle_option(player, enemy):
     """
     print(f"you are in combat with a {enemy.name} you can: Attack or change weapon")
     choice = input("what will you do?:...\n To attack type: option 1\n To change weapon type: option 2: ")
-    valid_choice = input_validation(choice, "option1", "option2")
-    if valid_choice == "option 1":
-        print("atck option")
-    if valid_choice == "option 2":
-        print("weapon option")
+    choice = input_validation(choice, "option1", "option2")
+    print("")
+    if choice == "option1":
+        print("\n")
+    if choice == "option2":
         player.change_weapon()
+
+def weapon_input_validation(choice, weapon_list):
+    valid_choice = choice.rstrip().lstrip().lower().capitalize()
+    if valid_choice in weapon_list:
+        return valid_choice
+    while valid_choice not in weapon_list: 
+        print("Invalid choice please use one of the following options to continie", weapon_list)
+        valid_choice = input(f'Enter choice here..:').rstrip().lstrip().lower().capitalize()
+        print("")
+        if valid_choice in weapon_list:
+            return valid_choice
 
 def input_validation(choice, *args):
     valid_choice = choice.replace(" ", "")
     valid_choice = valid_choice.lower()
+    if valid_choice in args:
+            return valid_choice
     while valid_choice not in args: 
-        print(valid_choice)
         print("Invalid choice please use one of the following options to continie", args)
         valid_choice = input(f'Enter choice here..:').replace(" ", "").lower()
         if valid_choice in args:
@@ -136,9 +149,10 @@ def goblin_ambush(player_character):
 def ambush_goblin(player_character):
     print("as you sneak around you notice a goblin hiding behind a bush watching the road\n")
     choice = input("what would you like to do?\n type 'option 1' to attack\n type 'option 2' to sneak past....:\n")
-    if choice == "option 1":
+    choice = input_validation(choice, "option1", "option2")
+    if choice == "option1":
         battle(player_character, Goblin("chalk, rabit"))
-    if choice == "option 2":
+    if choice == "option2":
         print("more content coming soon...")
 
 def get_player_name():
@@ -148,22 +162,21 @@ def get_player_name():
     player_character = Player(["fire starter"])
     player_character.name = input("hello traveller what is your name?: ")
     print(f'well met {player_character.name}! take care on these roads there are goblins on the loose.\n')
-
-    battle(player_character, Goblin("chalk, rabit"))
     return player_character
 
 def introduction(player_character):
     print("you are traveling alone to newtown when you see somthing in the road.\n")
-    player_choice = input("type <option 1> to invstigate\n type <option 2> to sneak around:\n")
-    if player_choice == "option 1":
+    choice = input("type <option 1> to invstigate\n type <option 2> to sneak around:\n")
+    choice = input_validation(choice, "option1", "option2")
+    if choice == "option1":
         goblin_ambush(player_character)
-    if player_choice == "option 2":
+    if choice == "option2":
         ambush_goblin(player_character)
 
 
 player_character = get_player_name()
 
-# introduction(player_character)
+introduction(player_character)
 
 
 
