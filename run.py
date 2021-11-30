@@ -141,7 +141,7 @@ def battle_option(player, enemy):
     Gives the player some options during combat
     """
     print(
-        f"you are in combat with a {enemy.name}\n"
+        f"you are in combat with a {enemy.name}"
         f" you can: Attack or change weapon"
     )
     choice = input(
