@@ -205,14 +205,14 @@ def ambush_goblin(player_character):
         " you notice a goblin hiding behind a bush watching the road\n"
     )
     choice = input(
-        "what would you like to do?\n\n"
-        "type 'option 1' to attack\n type 'option 2' to sneak past....:\n"
+        "What would you like to do?\n\n"
+        "Type 'option 1' to attack\n Type 'option 2' to sneak past....:\n"
     )
     choice = input_validation(choice, "option1", "option2")
     if choice == "option1":
         battle(player_character, Goblin("chalk, rabit"))
     if choice == "option2":
-        print("more content coming soon...")
+        print("More content coming soon...")
 
 
 def get_player_name():
@@ -221,9 +221,9 @@ def get_player_name():
     inputted to the player class
     """
     player_character = Player(["fire starter"])
-    player_character.name = input("hello traveller what is your name?: ")
+    player_character.name = input("Hello traveller what is your name?: ")
     print(
-        f'well met {player_character.name}!'
+        f'Well met {player_character.name}!'
         f' Take care on these roads there are goblins on the loose.\n'
     )
     return player_character
@@ -231,12 +231,12 @@ def get_player_name():
 
 def introduction(player_character):
     print(
-        "you are traveling alone to newtown"
+        "You are traveling alone to newtown"
         " when you see somthing in the road.\n"
     )
     choice = input(
-        "type <option 1> to invstigate\n"
-        "type <option 2> to sneak around:\n"
+        "Type <option 1> to invstigate\n"
+        "Type <option 2> to sneak around:\n"
     )
     choice = input_validation(choice, "option1", "option2")
     if choice == "option1":
