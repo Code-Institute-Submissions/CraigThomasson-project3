@@ -245,6 +245,38 @@ def introduction(player_character):
         ambush_goblin(player_character)
 
 
-player_character = get_player_name()
+def player_death(player_character):
+    """
+    This function should be called when ever the player dies.
+    It gives them the option to play again or quit the game.
+    """
+    print(f'{player_character.name} has died!')
+    choice = input(
+        "Would you play again?\n"
+        "Type 'yes' to play again "
+        "or Type 'no' to quit...:"
+        )
+    choice = input_validation(choice, "yes", "no")
+    if choice == "yes":
+        main()
+    if choice == "no":
+        quit_game(player_character)
 
-introduction(player_character)
+
+def quit_game(player_character):
+    """
+    This finction should only be run when the player
+    has chosen to end the game.
+    It simply prints a message to the player once they decid to end the game.
+    """
+    print(
+        f"It is with a heavy hart I bid the fairwell {player_character.name}"
+        "I hope to see you again one day on a new adventure!"
+        )
+
+def main():
+    player_character = get_player_name()
+    introduction(player_character)
+
+
+main()
