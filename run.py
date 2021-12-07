@@ -117,8 +117,7 @@ def battle(player_character, enemy):
             print(f"{enemy.name}'s health is now {enemy.health}\n")
             if enemy.health <= 0:
                 print(f"you have slane the {enemy.name}")
-                break
-
+                return player_character
             print(
                 f'{enemy.name} attacks '
                 f'{player_character.name} with '
@@ -132,7 +131,7 @@ def battle(player_character, enemy):
             )
             if player_character.health <= 0:
                 print(f"you have been slain by the {enemy.name}....\n")
-                player_character = get_player_name()
+                player_death(player_character)
             battle_option(player_character, enemy)
 
 
@@ -210,7 +209,7 @@ def ambush_goblin(player_character):
     )
     choice = input_validation(choice, "option1", "option2")
     if choice == "option1":
-        battle(player_character, Goblin("chalk, rabit"))
+        player_character = battle(player_character, Goblin("chalk, rabit"))
     if choice == "option2":
         print("More content coming soon...")
 
