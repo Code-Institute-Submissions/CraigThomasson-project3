@@ -159,10 +159,19 @@ def battle_option(player, enemy):
 def loot(player_character, enemy):
     print(f"{enemy.name} lies dead at your feet\n")
     choice = input(
-        f"Type 'loot' if you would like to loot the {enemy.name}"
-        "Type 'continue' to continue"
+        f"Type 'loot' if you would like to loot the {enemy.name}\n"
+        "Type 'continue' to continue...:"
         )
     choice = input_validation(choice, "loot", "continue")
+    if choice == "loot":
+        for item in enemy.items:
+            player_character.items.append(item)
+        for weapon in enemy.weapon_inventory:
+            player_character.weapon_inventory.append(weapon)
+        player_character.weapon_inventory += enemy.weapon_inventory
+        print(player_character.weapon_inventory, player_character.items)
+        print(f"{enemy .items} added to your inventory")
+        print(f'{enemy.weapon_inventory} added to your weapon inventory')
 
 
 
