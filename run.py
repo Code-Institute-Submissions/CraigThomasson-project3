@@ -117,6 +117,7 @@ def battle(player_character, enemy):
             print(f"{enemy.name}'s health is now {enemy.health}\n")
             if enemy.health <= 0:
                 print(f"you have slane the {enemy.name}")
+                loot(player_character, enemy)
                 return player_character
             print(
                 f'{enemy.name} attacks '
@@ -155,6 +156,16 @@ def battle_option(player, enemy):
         player.change_weapon()
 
 
+def loot(player_character, enemy):
+    print(f"{enemy.name} lies dead at your feet\n")
+    choice = input(
+        f"Type 'loot' if you would like to loot the {enemy.name}"
+        "Type 'continue' to continue"
+        )
+    choice = input_validation(choice, "loot", "continue")
+
+
+
 def weapon_input_validation(choice, weapon_list):
     valid_choice = choice.rstrip().lstrip().lower().capitalize()
     if valid_choice in weapon_list:
@@ -173,6 +184,12 @@ def weapon_input_validation(choice, weapon_list):
 
 
 def input_validation(choice, *args):
+    """
+    Takes player in put on mutilple givin options(args)
+    and validates th input.
+    If input is invalsid it promps the useer to input again.
+    It then returns the validated input.
+    """
     valid_choice = choice.replace(" ", "")
     valid_choice = valid_choice.lower()
     if valid_choice in args:
@@ -199,8 +216,12 @@ def goblin_ambush(player_character):
 
 
 def ambush_goblin(player_character):
+    """
+    The function will run if the player chooses to be stealthy
+    when they see the cart in the road.
+    """
     print(
-        "as you sneak around"
+        "As you sneak around"
         " you notice a goblin hiding behind a bush watching the road\n"
     )
     choice = input(
@@ -210,13 +231,16 @@ def ambush_goblin(player_character):
     choice = input_validation(choice, "option1", "option2")
     if choice == "option1":
         player_character = battle(player_character, Goblin("chalk, rabit"))
+        
     if choice == "option2":
         print("More content coming soon...")
 
 
+
+
 def get_player_name():
     """
-    used to initiat the game and get the players name 
+    used to initiat the game and get the players name
     inputted to the player class
     """
     player_character = Player(["fire starter"])
@@ -269,9 +293,10 @@ def quit_game(player_character):
     It simply prints a message to the player once they decid to end the game.
     """
     print(
-        f"It is with a heavy hart I bid the fairwell {player_character.name}"
+        f"It is with a heavy heart I bid the fairwell {player_character.name}"
         "I hope to see you again one day on a new adventure!"
         )
+
 
 def main():
     player_character = get_player_name()
