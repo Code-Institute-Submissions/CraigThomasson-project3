@@ -227,37 +227,8 @@ def input_validation(choice, *args):
         if valid_choice in args:
             return valid_choice
 
+
 # story functions
-
-
-def goblin_ambush(player_character):
-    print(
-        "you see an abandoned cart in the road.\n"
-        "The cart has been looted\n"
-        "you hear a rustling behind you as"
-        " a goblin charges at you from cover.\n"
-    )
-
-
-def ambush_goblin(player_character):
-    """
-    The function will run if the player chooses to be stealthy
-    when they see the cart in the road.
-    """
-    print(
-        "As you sneak around"
-        " you notice a goblin hiding behind a bush watching the road\n"
-    )
-    choice = input(
-        "What would you like to do?\n\n"
-        "Type 'option 1' to attack\n Type 'option 2' to sneak past....:\n"
-    )
-    choice = input_validation(choice, "option1", "option2")
-    if choice == "option1":
-        player_character = battle(player_character, Goblin(["chalk", "rabit"]))
-        
-    if choice == "option2":
-        print("More content coming soon...")
 
 
 
@@ -290,6 +261,54 @@ def introduction(player_character):
         goblin_ambush(player_character)
     if choice == "option2":
         ambush_goblin(player_character)
+
+def goblin_ambush(player_character):
+    print(
+        "you see an abandoned cart in the road.\n"
+        "The cart has been looted\n"
+        "you hear a rustling behind you as"
+        " a goblin charges at you from cover.\n"
+    )
+
+
+def ambush_goblin(player_character):
+    """
+    The function will run if the player chooses to be stealthy
+    when they see the cart in the road.
+    """
+    print(
+        "As you sneak around"
+        " you notice a goblin hiding behind a bush watching the road\n"
+    )
+    choice = input(
+        "What would you like to do?\n\n"
+        "Type 'option 1' to attack\n Type 'option 2' to sneak past....:\n"
+    )
+    choice = input_validation(choice, "option1", "option2")
+    if choice == "option1":
+        player_character = battle(player_character, Goblin(["chalk", "rabit"]))
+        
+    if choice == "option2":
+        print("More content coming soon...")
+
+
+def hidden_path(player_character):
+    """
+    the player is given a chioce to follow a hiden path or go on to town
+    """
+    print(
+        "As you begin to head of down the road"
+        "you notice trail behind the bushes where the goblin was hiding."
+    )
+    choice = input(
+        "Type 'option 1' to follow the hidden path"
+        "Type 'option 2' to continue down the road to Newtown"
+        "...: "
+    )
+    if choice == "option1":
+        goblin_cave(player_character)
+    if choice == "option2":
+        newtown(player_character)
 
 
 def player_death(player_character):
@@ -328,6 +347,7 @@ def main():
 
 
 # main()
+
 
 lplayer_character = Player(["fire starter"])
 lenemy = Goblin(["chalk, rabit"])
