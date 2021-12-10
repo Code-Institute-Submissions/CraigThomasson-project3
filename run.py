@@ -306,9 +306,12 @@ def hidden_path(player_character):
         "...: "
     )
     if choice == "option1":
-        goblin_cave(player_character)
+        goblin_cave_entrance(player_character)
     if choice == "option2":
         newtown(player_character)
+
+
+def goblin_cave_entrance(player_character):
 
 
 def player_death(player_character):
