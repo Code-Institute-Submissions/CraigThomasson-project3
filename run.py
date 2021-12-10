@@ -39,6 +39,7 @@ class Entity:
         for weapon in self.weapon_inventory:
             if weapon.name == weapon_choice:
                 self.weapon = weapon
+                
 
 
 class Player(Entity):
@@ -48,7 +49,7 @@ class Player(Entity):
     def __init__(self, items):
         Entity.__init__(
             self, 17, 5, 5, "Player", Rusty_knife(),
-            [Rusty_knife(), Scimitar()]
+            [Rusty_knife()]
         )
         self.items = items
 
@@ -99,6 +100,16 @@ class Scimitar(Weapon):
 
 
 # game functions
+
+
+def weapon_name_list(object):
+    """
+    creats a list of weapon.names in list of weapon classs
+    """
+    new_list = []
+    for item in object.weapon_inventory:
+        new_list.append(item.name)
+    return new_list
 
 
 def battle(player_character, enemy):
@@ -157,6 +168,12 @@ def battle_option(player, enemy):
 
 
 def loot(player_character, enemy):
+    """
+    allows player to take items and weapons from dead enemies.
+    gets enemy.items and enemy.weapon_invemtory and adds them
+    to player_character. items and player-character.weapon_inventory.
+    prints what items and weapons have been looted.
+    """
     print(f"{enemy.name} lies dead at your feet\n")
     choice = input(
         f"Type 'loot' if you would like to loot the {enemy.name}\n"
@@ -164,15 +181,16 @@ def loot(player_character, enemy):
         )
     choice = input_validation(choice, "loot", "continue")
     if choice == "loot":
+        print("enemy itmes: ", enemy.items)
         for item in enemy.items:
+            print("print enemy items", item)
             player_character.items.append(item)
         for weapon in enemy.weapon_inventory:
             player_character.weapon_inventory.append(weapon)
-        player_character.weapon_inventory += enemy.weapon_inventory
-        print(player_character.weapon_inventory, player_character.items)
-        print(f"{enemy .items} added to your inventory")
-        print(f'{enemy.weapon_inventory} added to your weapon inventory')
-
+        print("pc wep inv", player_character.weapon_inventory)    
+        enemy_weapon_list = weapon_name_list(enemy)
+        print(f"{enemy.items} added to your inventory")
+        print(f'{enemy_weapon_list} added to your weapon inventory')
 
 
 def weapon_input_validation(choice, weapon_list):
@@ -239,7 +257,7 @@ def ambush_goblin(player_character):
     )
     choice = input_validation(choice, "option1", "option2")
     if choice == "option1":
-        player_character = battle(player_character, Goblin("chalk, rabit"))
+        player_character = battle(player_character, Goblin(["chalk", "rabit"]))
         
     if choice == "option2":
         print("More content coming soon...")
@@ -312,4 +330,9 @@ def main():
     introduction(player_character)
 
 
-main()
+# main()
+
+lplayer_character = Player(["fire starter"])
+lenemy = Goblin(["chalk, rabit"])
+
+loot(lplayer_character, lenemy)
