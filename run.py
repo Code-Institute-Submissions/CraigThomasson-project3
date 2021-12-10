@@ -102,12 +102,12 @@ class Scimitar(Weapon):
 # game functions
 
 
-def weapon_name_list(object):
+def weapon_name_list(weapon):
     """
     creats a list of weapon.names in list of weapon classs
     """
     new_list = []
-    for item in object.weapon_inventory:
+    for item in weapon.weapon_inventory:
         new_list.append(item.name)
     return new_list
 
@@ -181,16 +181,13 @@ def loot(player_character, enemy):
         )
     choice = input_validation(choice, "loot", "continue")
     if choice == "loot":
-        print("enemy itmes: ", enemy.items)
         for item in enemy.items:
-            print("print enemy items", item)
             player_character.items.append(item)
         for weapon in enemy.weapon_inventory:
             player_character.weapon_inventory.append(weapon)
-        print("pc wep inv", player_character.weapon_inventory)    
         enemy_weapon_list = weapon_name_list(enemy)
-        print(f"{enemy.items} added to your inventory")
-        print(f'{enemy_weapon_list} added to your weapon inventory')
+        print(*enemy.items, ' added to your inventory')
+        print(*enemy_weapon_list, ' added to your weapon inventory')
 
 
 def weapon_input_validation(choice, weapon_list):
@@ -315,7 +312,7 @@ def player_death(player_character):
 
 def quit_game(player_character):
     """
-    This finction should only be run when the player
+    This function should only be run when the player
     has chosen to end the game.
     It simply prints a message to the player once they decid to end the game.
     """
