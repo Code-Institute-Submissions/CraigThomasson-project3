@@ -39,7 +39,6 @@ class Entity:
         for weapon in self.weapon_inventory:
             if weapon.name == weapon_choice:
                 self.weapon = weapon
-                
 
 
 class Player(Entity):
@@ -231,8 +230,6 @@ def input_validation(choice, *args):
 # story functions
 
 
-
-
 def get_player_name():
     """
     used to initiat the game and get the players name
@@ -262,6 +259,7 @@ def introduction(player_character):
     if choice == "option2":
         ambush_goblin(player_character)
 
+
 def goblin_ambush(player_character):
     print(
         "you see an abandoned cart in the road.\n"
@@ -287,7 +285,6 @@ def ambush_goblin(player_character):
     choice = input_validation(choice, "option1", "option2")
     if choice == "option1":
         player_character = battle(player_character, Goblin(["chalk", "rabit"]))
-        
     if choice == "option2":
         print("More content coming soon...")
 
@@ -298,7 +295,7 @@ def hidden_path(player_character):
     """
     print(
         "As you begin to head of down the road"
-        "you notice trail behind the bushes where the goblin was hiding."
+        "you notice a trail behind the bushes where the goblin was hiding."
     )
     choice = input(
         "Type 'option 1' to follow the hidden path"
@@ -312,6 +309,15 @@ def hidden_path(player_character):
 
 
 def goblin_cave_entrance(player_character):
+    print(
+        "You follow the track for over an hour before you come"
+        "to the foot of a large hill."
+        "The track leads up to a hidden cave opening"
+    )
+    input(
+        "Type 'option 1' to enter the cave"
+        "Type 'option 2' to investigate the area"
+        )
 
 
 def player_death(player_character):
@@ -349,10 +355,4 @@ def main():
     introduction(player_character)
 
 
-# main()
-
-
-lplayer_character = Player(["fire starter"])
-lenemy = Goblin(["chalk, rabit"])
-
-loot(lplayer_character, lenemy)
+main()
