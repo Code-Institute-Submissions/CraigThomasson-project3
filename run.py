@@ -1,4 +1,5 @@
 import random
+import pyfiglet
 
 # character and NPC classes
 
@@ -245,6 +246,15 @@ def get_player_name():
 
 
 def introduction(player_character):
+    """
+    yes pyfiglet to create intro banner and runs a basic into for the player.
+    """
+    banner1 = pyfiglet.figlet_format(
+        "Wellcome to"
+    )
+    banner2 = pyfiglet.figlet_format(
+        "Adventure game"
+    )
     print(
         "You are traveling alone to newtown"
         " when you see somthing in the road.\n"
@@ -357,6 +367,8 @@ def quit_game(player_character):
 
 
 def main():
+    print(banner1)
+    print(banner2)
     player_character = get_player_name()
     introduction(player_character)
 
