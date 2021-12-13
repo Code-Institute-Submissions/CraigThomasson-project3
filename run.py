@@ -47,12 +47,12 @@ class Player(Entity):
     """
     This will handel all stats and info for the players character
     """
-    def __init__(self, items):
+    def __init__(self, items, cave, newtown):
         Entity.__init__(
-            self, 17, 5, "Player", Rusty_knife(),
-            [Rusty_knife()]
-        )
+            self, 17, 5, "Player", Rusty_knife(), [Rusty_knife()])
         self.items = items
+        self.cave = cave
+        self.newtown = newtown
 
 
 class Goblin(Entity):
@@ -65,12 +65,12 @@ class Goblin(Entity):
         items = []
 
 
-class Goblin_archer(Goblin):
+class Goblin_boss(Entity):
     """
-    specialist goblin subclass
+    big bad boss class
     """
     def __init__(self):
-        Goblin.__init__(self, [])
+        Entity.__init__(self, 15, 3, "goblin Leader", Axe(), [Axe()])
 
 class Wolf(Entity):
     def __init__(self):
@@ -102,6 +102,11 @@ class Rusty_knife(Weapon):
 class Scimitar(Weapon):
     def __init__(self):
         Weapon.__init__(self, 1, 7, "Scimitar")
+
+class Axe(Weapon):
+    def __init__(self):
+        Weapon.__init__(self, 1, 9, "Axe")
+
 
 class Bite(Weapon):
     def __init__(self):
@@ -268,7 +273,7 @@ def get_player_name():
     used to initiat the game and get the players name
     inputted to the player class
     """
-    player_character = Player(["fire starter"])
+    player_character = Player(["fire starter"], "no", "no")
     player_character.name = input("Hello traveller what is your name?: ")
     delay_print(
         f'Well met {player_character.name}!'
@@ -389,6 +394,56 @@ def goblin_boss_fight(player_character):
         "The goblin looks up to see you and says 'just in time for dinner'\n"
         "as it grins and pulls out its axe.\n"
     )
+    choice = input(
+        'Fight the Goblin or flee?'
+        'Type "fight" to fight or "flee" to flee/n:'
+    )
+    if choice == "fight":
+        player_character = battle(player_character, Goblin_boss())
+        player_character.cave = "clear"
+        delay_print(
+            "You have slain to mighty goblin leader and saved the merchant!"
+            "You escort the merchant and his wears back to new town."
+        )
+        newtown(player_character)
+    if choice == "flee":
+        delay_print("You flee the cave and head straight to Newtown")
+        player_character.cave = "fled"
+        newtown(player_character)
+
+
+def newtown(player_character):
+    delay_print(
+        "Through the trees you see a small town of about two dozen buildings\n"
+        "surrounded by a 7ft wooden wall the gate lies open.\n"
+    )
+    if player_character.cave == "no":
+        newtown_no_cave(player_character)
+    if player_character.cave == "fled":
+        newtown_fled_cave(player_character)
+    if player_character.cave == "clear":
+        newtown_clear_cave(player_character)
+
+
+def newtown_no_cave(player_character):
+    delay_print(
+        "As you  draw level with the gates a guard approaches.\n"
+        "'Hail stranger “have you seen a merchant on the road?'\n"
+        "'He was meant to arrive yesterday\n"
+        "and we are in desperate need of supplies.\n'"
+        "You: 'there was a abandoned cart on the road\n"
+        "with a goblin watching it from, the bushes'.\n"
+        "guard: 'You look like your capable would you investigate\n"
+        "'and bring the merchant and his goods back for us?'\n"
+    )
+    choice = input(
+        "Type: 'investigate' to go back to the cart in the road\n"
+        "and investigate\n"
+        "Type: 'stay' to give directions and stay in safe in town"
+    )
+    choice = input_validation(choice, "investigate", "stay")
+
+    
 
 
 def player_death(player_character):
