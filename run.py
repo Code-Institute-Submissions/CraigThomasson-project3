@@ -10,7 +10,7 @@ class Entity:
     """
     base class for all player and enemy classes
     """
-    def __init__(self, health, attack, speed, name, weapon, weapon_inventory):
+    def __init__(self, health, attack, name, weapon, weapon_inventory):
         self.health = health
         self.attack = attack
         self.speed = speed
@@ -50,7 +50,7 @@ class Player(Entity):
     """
     def __init__(self, items):
         Entity.__init__(
-            self, 17, 5, 5, "Player", Rusty_knife(),
+            self, 17, 5, "Player", Rusty_knife(),
             [Rusty_knife()]
         )
         self.items = items
@@ -61,7 +61,7 @@ class Goblin(Entity):
     Base class for all goblin type enemies
     """
     def __init__(self, items):
-        Entity.__init__(self, 10, 2, 6, "Goblin", Scimitar(), [Scimitar()])
+        Entity.__init__(self, 10, 2, "Goblin", Scimitar(), [Scimitar()])
         self.items = items
         items = []
 
@@ -75,7 +75,7 @@ class Goblin_archer(Goblin):
 
 class Wolf(Entity):
     def __init__(self):
-        Entity.__init__(self, 11, 4, 10, "wolf", Bite(), [])
+        Entity.__init__(self, 11, 4, "wolf", Bite(), [])
 
 
 # weapon classes
@@ -133,38 +133,36 @@ def weapon_name_list(weapon):
 
 def battle(player_character, enemy):
     if player_character.speed > enemy.speed:
-        while player_character.health > 0 and enemy.health > 0:
-            player_damage = player_character.make_atk()
-            enemy_damage = enemy.make_atk()
-
-            delay_print(
-                f'{player_character.name} attacks '
-                f'{enemy.name} with '
-                f'{player_character.weapon.name} for '
-                f'{player_damage} damage'
-            )
-            enemy.health -= player_damage
-            delay_print(f" {enemy.name}'s health is now {enemy.health}\n")
-            if enemy.health <= 0:
-                delay_print(f"you have slane the {enemy.name} ")
-                player_character = loot(player_character, enemy)
-                return player_character
-            delay_print(
-                f'{enemy.name} attacks '
-                f'{player_character.name} with '
-                f'{enemy.weapon.name} for '
-                f'{enemy_damage} damage'
-            )
-            player_character.health -= enemy_damage
-            delay_print(
-                f" {player_character.name}'s health is now "
-                f'{player_character.health}\n'
-            )
-            if player_character.health <= 0:
-                delay_print(f"you have been slain by the {enemy.name}....\n")
-                player_death(player_character)
-            battle_option(player_character, enemy)
-
+        player_damage = player_character.make_atk()
+        enemy_damage = enemy.make_atk()
+        delay_print(
+            f'{player_character.name} attacks '
+            f'{enemy.name} with '
+            f'{player_character.weapon.name} for '
+            f'{player_damage} damage'
+        )
+        enemy.health -= player_damage
+        delay_print(f" {enemy.name}'s health is now {enemy.health}\n")
+        if enemy.health <= 0:
+            delay_print(f"you have slane the {enemy.name} ")
+            player_character = loot(player_character, enemy)
+            return player_character
+        delay_print(
+            f'{enemy.name} attacks '
+            f'{player_character.name} with '
+            f'{enemy.weapon.name} for '
+            f'{enemy_damage} damage'
+        )
+        player_character.health -= enemy_damage
+        delay_print(
+            f" {player_character.name}'s health is now "
+            f'{player_character.health}\n'
+        )
+        if player_character.health <= 0:
+            delay_print(f"you have been slain by the {enemy.name}....\n")
+            player_death(player_character)
+        battle_option(player_character, enemy)
+                
 
 def battle_option(player, enemy):
     """
