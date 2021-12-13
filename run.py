@@ -375,6 +375,20 @@ def wolf_fight(player_character):
         "A wolf leaps out from the darkness and attacks. \n"
     )
     player_character = battle(player_character, Wolf())
+    goblin_boss_fight(player_character)
+
+
+def goblin_boss_fight(player_character):
+    delay_print(
+        "You see a flickering light at the end of the tunnel.\n"
+        "As you approach the tunnel bands and opens into a large cavern.\n"
+        "There is a large cooking pot boiling what looks like stew\n"
+        "on a large fire.\n"
+        "A large goblin is currently trying to winch\n"
+        "a bound man over and into the cooking pot\n"
+        "The goblin looks up to see you and says 'just in time for dinner'\n"
+        "as it grins and pulls out its axe.\n"
+    )
 
 
 def player_death(player_character):
@@ -407,17 +421,17 @@ def quit_game(player_character):
         )
 
 
-def main():
-    banner()
-    player_character = get_player_name()
-    introduction(player_character)
+# def main():
+#     banner()
+#     player_character = get_player_name()
+#     introduction(player_character)
 
 
 # main()
 
 def test_bench():
     player_character = Player(["fire starter"])
-    wolf_fight(player_character)
+    goblin_boss_fight(player_character)
     print("wining")
 
 test_bench()
