@@ -302,6 +302,7 @@ def hidden_path(player_character):
         "Type 'option 2' to continue down the road to Newtown"
         "...: "
     )
+    choice = input_validation(choice, "option1", "option2")
     if choice == "option1":
         goblin_cave_entrance(player_character)
     if choice == "option2":
@@ -314,10 +315,15 @@ def goblin_cave_entrance(player_character):
         "to the foot of a large hill."
         "The track leads up to a hidden cave opening"
     )
-    input(
+    choice = input(
         "Type 'option 1' to enter the cave"
         "Type 'option 2' to investigate the area"
-        )
+    )
+    choice = input_validation(choice, "option1", "option2")
+    if choice == "option1":
+        wolf_fight(player_character)
+    if choice == "option2":
+        sneak_past_wolf(player_character)
 
 
 def player_death(player_character):
