@@ -33,9 +33,9 @@ class Entity:
         for weapon in self.weapon_inventory:
             weapon_list.append(weapon.name)
         delay_print(f'your current weapon list is: {weapon_list}.')
-        delay_print(f'{self.weapon.name} is equipped')
+        delay_print(f'{self.weapon.name} is equipped.')
         weapon_choice = input(
-            'type the  name of the weapon you would like'
+            ' Type the  name of the weapon you would like'
             ' to equip: '
         )
         weapon_choice = weapon_input_validation(weapon_choice, weapon_list)
@@ -136,9 +136,9 @@ def battle(player_character, enemy):
                 f'{player_damage} damage'
             )
             enemy.health -= player_damage
-            delay_print(f"{enemy.name}'s health is now {enemy.health}\n")
+            delay_print(f" {enemy.name}'s health is now {enemy.health}\n")
             if enemy.health <= 0:
-                delay_print(f"you have slane the {enemy.name}")
+                delay_print(f"you have slane the {enemy.name} ")
                 loot(player_character, enemy)
                 return player_character
             delay_print(
@@ -149,7 +149,7 @@ def battle(player_character, enemy):
             )
             player_character.health -= enemy_damage
             delay_print(
-                f"{player_character.name}'s health is now "
+                f" {player_character.name}'s health is now "
                 f'{player_character.health}\n'
             )
             if player_character.health <= 0:
@@ -186,6 +186,7 @@ def loot(player_character, enemy):
     to player_character. items and player-character.weapon_inventory.
     prints what items and weapons have been looted.
     """
+    print("")
     delay_print(f"{enemy.name} lies dead at your feet\n")
     choice = input(
         f"Type 'loot' if you would like to loot the {enemy.name}\n"
@@ -266,7 +267,7 @@ def get_player_name():
 
 def introduction(player_character):
     """
-    yes pyfiglet to create intro banner and runs a basic into for the player.
+    runs a basic intro for the player.
     """
     delay_print(
         "You are traveling alone to newtown"
@@ -302,8 +303,8 @@ def ambush_goblin(player_character):
         " you notice a goblin hiding behind a bush watching the road\n"
     )
     choice = input(
-        "What would you like to do?\n\n"
-        "Type 'option 1' to attack\n Type 'option 2' to sneak past....:\n"
+        "What would you like to do?\n"
+        "Type 'option 1' to attack\nType 'option 2' to sneak past....:\n"
     )
     choice = input_validation(choice, "option1", "option2")
     if choice == "option1":
@@ -318,11 +319,11 @@ def hidden_path(player_character):
     the player is given a chioce to follow a hiden path or go on to town
     """
     delay_print(
-        "\nAs you begin to head of down the road"
+        "As you begin to head of down the road "
         "you notice a trail behind the bushes where the goblin was hiding.\n"
     )
     choice = input(
-        "Type 'option 1' to follow the hidden path\n"
+        "Type 'option 1' to follow the hidden path \n"
         "Type 'option 2' to continue down the road to Newtown\n"
         "...: "
     )
@@ -335,12 +336,15 @@ def hidden_path(player_character):
 
 def goblin_cave_entrance(player_character):
     delay_print(
-        "You follow the track for over an hour before you come"
+        "You follow the track for over an hour before you come "
         "to the foot of a large hill."
+    )
+    delay_print(
         "The track leads up to a hidden cave opening"
     )
+    print("")
     choice = input(
-        "Type 'option 1' to enter the cave"
+        "Type 'option 1' to enter the cave/n"
         "Type 'option 2' to investigate the area"
     )
     choice = input_validation(choice, "option1", "option2")
