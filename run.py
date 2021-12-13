@@ -13,7 +13,6 @@ class Entity:
     def __init__(self, health, attack, name, weapon, weapon_inventory):
         self.health = health
         self.attack = attack
-        self.speed = speed
         self.name = name
         self.weapon = weapon
         self.weapon_inventory = weapon_inventory
@@ -132,7 +131,7 @@ def weapon_name_list(weapon):
 
 
 def battle(player_character, enemy):
-    if player_character.speed > enemy.speed:
+    while player_character.health > 0 and enemy.health > 0:
         player_damage = player_character.make_atk()
         enemy_damage = enemy.make_atk()
         delay_print(
@@ -170,16 +169,16 @@ def battle_option(player, enemy):
     """
     delay_print(
         f"you are in combat with a {enemy.name}"
-        f" you can: Attack or change weapon"
+        f" you can: Attack or change weapon\n"
     )
     choice = input(
         "what will you do?:...\n To attack type: option 1\n"
-        " To change weapon type: option 2: "
+        " To change weapon type: option 2.\n: "
     )
     choice = input_validation(choice, "option1", "option2")
     print("")
     if choice == "option1":
-        print("\n")
+        return player
     if choice == "option2":
         player.change_weapon()
         return player
@@ -419,5 +418,6 @@ def main():
 def test_bench():
     player_character = Player(["fire starter"])
     wolf_fight(player_character)
+    print("wining")
 
 test_bench()
