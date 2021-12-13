@@ -73,6 +73,10 @@ class Goblin_archer(Goblin):
     def __init__(self):
         Goblin.__init__(self, [])
 
+class Wolf(Entity):
+    def __init__(self):
+        Entity.__init__(self, 11, 4, 10, "wolf", Bite(), [])
+
 
 # weapon classes
 
@@ -100,6 +104,10 @@ class Scimitar(Weapon):
     def __init__(self):
         Weapon.__init__(self, 1, 7, "Scimitar")
 
+class Bite(Weapon):
+    def __init__(self):
+        Weapon.__init__(self, 2, 5, "Bite")
+
 
 # game functions
 
@@ -110,7 +118,7 @@ def delay_print(s):
     for c in s:
         sys.stdout.write(c)
         sys.stdout.flush()
-        time.sleep(0.09)
+        time.sleep(0.01)
 
 
 def weapon_name_list(weapon):
@@ -124,7 +132,7 @@ def weapon_name_list(weapon):
 
 
 def battle(player_character, enemy):
-    if player_character.speed < enemy.speed:
+    if player_character.speed > enemy.speed:
         while player_character.health > 0 and enemy.health > 0:
             player_damage = player_character.make_atk()
             enemy_damage = enemy.make_atk()
@@ -139,7 +147,7 @@ def battle(player_character, enemy):
             delay_print(f" {enemy.name}'s health is now {enemy.health}\n")
             if enemy.health <= 0:
                 delay_print(f"you have slane the {enemy.name} ")
-                loot(player_character, enemy)
+                player_character = loot(player_character, enemy)
                 return player_character
             delay_print(
                 f'{enemy.name} attacks '
@@ -194,13 +202,20 @@ def loot(player_character, enemy):
         )
     choice = input_validation(choice, "loot", "continue")
     if choice == "loot":
-        for item in enemy.items:
-            player_character.items.append(item)
-        for weapon in enemy.weapon_inventory:
-            player_character.weapon_inventory.append(weapon)
-        enemy_weapon_list = weapon_name_list(enemy)
-        delay_print(*enemy.items, ' added to your inventory')
-        delay_print(*enemy_weapon_list, ' added to your weapon inventory')
+        # some enemys like wolves do not have items in there class 
+        # try and except is used to insure there are nno issues if 
+        # a player ties to loot a enemy with no items.
+        try:
+            for item in enemy.items:
+                player_character.items.append(item)
+            for weapon in enemy.weapon_inventory:
+                player_character.weapon_inventory.append(weapon)
+            enemy_weapon_list = weapon_name_list(enemy)
+            delay_print(*enemy.items, ' added to your inventory')
+            delay_print(*enemy_weapon_list, ' added to your weapon inventory')
+            return player_character
+        except AttributeError:
+            delay_print(f'{enemy.name} has nothing to loot \n')
 
 
 def weapon_input_validation(choice, weapon_list):
@@ -354,6 +369,17 @@ def goblin_cave_entrance(player_character):
         sneak_past_wolf(player_character)
 
 
+def wolf_fight(player_character):
+    delay_print(
+        "As you enter the cave you notice something pull against your leg \n"
+        "as you set of a trip wire. \n"
+        "You hear a metallic sound as the alarm sounds….\n"
+        "followed by a deep growl coming from the shadows.\n"
+        "A wolf leaps out from the darkness and attacks. \n"
+    )
+    player_character = battle(player_character, Wolf())
+
+
 def player_death(player_character):
     """
     This function should be called when ever the player dies.
@@ -390,4 +416,10 @@ def main():
     introduction(player_character)
 
 
-main()
+# main()
+
+def test_bench():
+    player_character = Player(["fire starter"])
+    wolf_fight(player_character)
+
+test_bench()
