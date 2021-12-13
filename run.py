@@ -1,5 +1,7 @@
 import random
 import pyfiglet
+import time
+import sys
 
 # character and NPC classes
 
@@ -30,8 +32,8 @@ class Entity:
         weapon_list = []
         for weapon in self.weapon_inventory:
             weapon_list.append(weapon.name)
-        print(f'your current weapon list is: {weapon_list}.')
-        print(f'{self.weapon.name} is equipped')
+        delay_print(f'your current weapon list is: {weapon_list}.')
+        delay_print(f'{self.weapon.name} is equipped')
         weapon_choice = input(
             'type the  name of the weapon you would like'
             ' to equip: '
@@ -102,6 +104,15 @@ class Scimitar(Weapon):
 # game functions
 
 
+# this code was copied fro stackoverflow.com
+# links in read me
+def delay_print(s):
+    for c in s:
+        sys.stdout.write(c)
+        sys.stdout.flush()
+        time.sleep(0.25)
+
+
 def weapon_name_list(weapon):
     """
     creats a list of weapon.names in list of weapon classs
@@ -118,31 +129,31 @@ def battle(player_character, enemy):
             player_damage = player_character.make_atk()
             enemy_damage = enemy.make_atk()
 
-            print(
+            delay_print(
                 f'{player_character.name} attacks '
                 f'{enemy.name} with '
                 f'{player_character.weapon.name} for '
                 f'{player_damage} damage'
             )
             enemy.health -= player_damage
-            print(f"{enemy.name}'s health is now {enemy.health}\n")
+            delay_print(f"{enemy.name}'s health is now {enemy.health}\n")
             if enemy.health <= 0:
-                print(f"you have slane the {enemy.name}")
+                delay_print(f"you have slane the {enemy.name}")
                 loot(player_character, enemy)
                 return player_character
-            print(
+            delay_print(
                 f'{enemy.name} attacks '
                 f'{player_character.name} with '
                 f'{enemy.weapon.name} for '
                 f'{enemy_damage} damage'
             )
             player_character.health -= enemy_damage
-            print(
-                f"{player_character.name}'s health is now"
+            delay_print(
+                f"{player_character.name}'s health is now "
                 f'{player_character.health}\n'
             )
             if player_character.health <= 0:
-                print(f"you have been slain by the {enemy.name}....\n")
+                delay_print(f"you have been slain by the {enemy.name}....\n")
                 player_death(player_character)
             battle_option(player_character, enemy)
 
@@ -151,7 +162,7 @@ def battle_option(player, enemy):
     """
     Gives the player some options during combat
     """
-    print(
+    delay_print(
         f"you are in combat with a {enemy.name}"
         f" you can: Attack or change weapon"
     )
@@ -165,6 +176,7 @@ def battle_option(player, enemy):
         print("\n")
     if choice == "option2":
         player.change_weapon()
+        return player
 
 
 def loot(player_character, enemy):
@@ -174,7 +186,7 @@ def loot(player_character, enemy):
     to player_character. items and player-character.weapon_inventory.
     prints what items and weapons have been looted.
     """
-    print(f"{enemy.name} lies dead at your feet\n")
+    delay_print(f"{enemy.name} lies dead at your feet\n")
     choice = input(
         f"Type 'loot' if you would like to loot the {enemy.name}\n"
         "Type 'continue' to continue...:"
@@ -186,8 +198,8 @@ def loot(player_character, enemy):
         for weapon in enemy.weapon_inventory:
             player_character.weapon_inventory.append(weapon)
         enemy_weapon_list = weapon_name_list(enemy)
-        print(*enemy.items, ' added to your inventory')
-        print(*enemy_weapon_list, ' added to your weapon inventory')
+        delay_print(*enemy.items, ' added to your inventory')
+        delay_print(*enemy_weapon_list, ' added to your weapon inventory')
 
 
 def weapon_input_validation(choice, weapon_list):
@@ -237,6 +249,7 @@ def banner():
     print(banner1)
     print(banner2)
 
+
 def get_player_name():
     """
     used to initiat the game and get the players name
@@ -244,7 +257,7 @@ def get_player_name():
     """
     player_character = Player(["fire starter"])
     player_character.name = input("Hello traveller what is your name?: ")
-    print(
+    delay_print(
         f'Well met {player_character.name}!'
         f' Take care on these roads there are goblins on the loose.\n'
     )
@@ -255,7 +268,7 @@ def introduction(player_character):
     """
     yes pyfiglet to create intro banner and runs a basic into for the player.
     """
-    print(
+    delay_print(
         "You are traveling alone to newtown"
         " when you see somthing in the road.\n"
     )
@@ -271,7 +284,7 @@ def introduction(player_character):
 
 
 def goblin_ambush(player_character):
-    print(
+    delay_print(
         "you see an abandoned cart in the road.\n"
         "The cart has been looted\n"
         "you hear a rustling behind you as"
@@ -284,7 +297,7 @@ def ambush_goblin(player_character):
     The function will run if the player chooses to be stealthy
     when they see the cart in the road.
     """
-    print(
+    delay_print(
         "As you sneak around"
         " you notice a goblin hiding behind a bush watching the road\n"
     )
@@ -295,21 +308,22 @@ def ambush_goblin(player_character):
     choice = input_validation(choice, "option1", "option2")
     if choice == "option1":
         player_character = battle(player_character, Goblin(["chalk", "rabit"]))
+        hidden_path(player_character)
     if choice == "option2":
-        print("More content coming soon...")
+        delay_print("More content coming soon...")
 
 
 def hidden_path(player_character):
     """
     the player is given a chioce to follow a hiden path or go on to town
     """
-    print(
-        "As you begin to head of down the road"
-        "you notice a trail behind the bushes where the goblin was hiding."
+    delay_print(
+        "\nAs you begin to head of down the road"
+        "you notice a trail behind the bushes where the goblin was hiding.\n"
     )
     choice = input(
-        "Type 'option 1' to follow the hidden path"
-        "Type 'option 2' to continue down the road to Newtown"
+        "Type 'option 1' to follow the hidden path\n"
+        "Type 'option 2' to continue down the road to Newtown\n"
         "...: "
     )
     choice = input_validation(choice, "option1", "option2")
@@ -320,7 +334,7 @@ def hidden_path(player_character):
 
 
 def goblin_cave_entrance(player_character):
-    print(
+    delay_print(
         "You follow the track for over an hour before you come"
         "to the foot of a large hill."
         "The track leads up to a hidden cave opening"
@@ -341,7 +355,7 @@ def player_death(player_character):
     This function should be called when ever the player dies.
     It gives them the option to play again or quit the game.
     """
-    print(f'{player_character.name} has died!')
+    delay_print(f'{player_character.name} has died!')
     choice = input(
         "Would you play again?\n"
         "Type 'yes' to play again "
@@ -360,7 +374,7 @@ def quit_game(player_character):
     has chosen to end the game.
     It simply prints a message to the player once they decid to end the game.
     """
-    print(
+    delay_print(
         f"It is with a heavy heart I bid the fairwell {player_character.name}"
         "I hope to see you again one day on a new adventure!"
         )

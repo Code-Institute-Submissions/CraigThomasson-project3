@@ -34,3 +34,6 @@ https://www.kite.com/python/answers/how-to-print-a-list-without-brackets-in-pyth
 
 used pyfiglet to create title banner
 https://www.devdungeon.com/content/create-ascii-art-text-banners-python
+
+copied this code to print out test charascter by character. 
+https://stackoverflow.com/questions/9246076/how-to-print-one-character-at-a-time-on-one-line
