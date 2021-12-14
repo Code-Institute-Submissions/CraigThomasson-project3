@@ -240,8 +240,8 @@ def loot(player_character, enemy):
             for weapon in enemy.weapon_inventory:
                 player_character.weapon_inventory.append(weapon)
             enemy_weapon_list = weapon_name_list(enemy)
-            delay_print(*enemy.items, ' added to your inventory')
-            delay_print(*enemy_weapon_list, ' added to your weapon inventory')
+            delay_print(f'{enemy.items} added to your inventory\n')
+            delay_print(f'{enemy_weapon_list} added to your weapon inventory\n')
             return player_character
         except AttributeError:
             delay_print(f'{enemy.name} has nothing to loot \n')
@@ -680,7 +680,6 @@ def ending_four(player_character):
         "'fu@#'"
         )
     play_again(player_character)
-
 
 
 def play_again(player_character):
