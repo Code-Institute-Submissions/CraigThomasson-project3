@@ -398,6 +398,7 @@ def goblin_boss_fight(player_character):
         'Fight the Goblin or flee?'
         'Type "fight" to fight or "flee" to flee/n:'
     )
+    choice = input_validation(choice, "flee", "fight")
     if choice == "fight":
         player_character = battle(player_character, Goblin_boss())
         player_character.cave = "clear"
@@ -442,9 +443,17 @@ def newtown_no_cave(player_character):
         "Type: 'stay' to give directions and stay in safe in town"
     )
     choice = input_validation(choice, "investigate", "stay")
-
-    
-
+    if choice == "stay":
+        delay_print(
+            "Guard: 'ok thanks for the information"
+            "we will deal with it from here.'\n"
+        )
+        ending_one(player_character)
+    if choice == "investigate":
+        delay_print(
+            "Guard: 'Thanks for helping"
+            "we will pray for your speedy return'"
+        )
 
 def player_death(player_character):
     """
