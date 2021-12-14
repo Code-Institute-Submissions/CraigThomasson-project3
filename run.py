@@ -72,6 +72,7 @@ class Goblin_boss(Entity):
     def __init__(self):
         Entity.__init__(self, 15, 3, "goblin Leader", Axe(), [Axe()])
 
+
 class Wolf(Entity):
     def __init__(self):
         Entity.__init__(self, 11, 4, "wolf", Bite(), [])
@@ -102,6 +103,7 @@ class Rusty_knife(Weapon):
 class Scimitar(Weapon):
     def __init__(self):
         Weapon.__init__(self, 1, 7, "Scimitar")
+
 
 class Axe(Weapon):
     def __init__(self):
@@ -166,7 +168,7 @@ def battle(player_character, enemy):
             delay_print(f"you have been slain by the {enemy.name}....\n")
             player_death(player_character)
         battle_option(player_character, enemy)
-                
+
 
 def battle_option(player, enemy):
     """
@@ -204,8 +206,8 @@ def loot(player_character, enemy):
         )
     choice = input_validation(choice, "loot", "continue")
     if choice == "loot":
-        # some enemys like wolves do not have items in there class 
-        # try and except is used to insure there are nno issues if 
+        # some enemys like wolves do not have items in there class
+        # try and except is used to insure there are nno issues if
         # a player ties to loot a enemy with no items.
         try:
             for item in enemy.items:
@@ -461,20 +463,44 @@ def newtown_no_cave(player_character):
         player_character.newtown = left
         goblin_cave_entrance(player_character)
 
+
 def ending(player_character):
     if player_character.cave == "clear":
         ending_one(player_character)
     if player_character.cave == "fled":
-        ending_two()
+        ending_two(player_character)
     if player_character.newtown == "stay":
         ending_three(player_character)
 
-def player_death(player_character):
+
+def ending_one(player_character):
     """
-    This function should be called when ever the player dies.
-    It gives them the option to play again or quit the game.
+    the player will get this ending if they clear the cave before reaching newtown.
     """
-    delay_print(f'{player_character.name} has died!')
+    delay_print(
+        "The guards see you enter the city with the merchant in tow.\n"
+        "They see that you are battered and bruised and take you to\n"
+        "the Wayfaring Inn to rest up.\n"
+        "By the next morning the guard had gathered the much need goods\n"
+        "from cave and seen that the merchant was looked after.\n"
+        "You where named hero in the town and \n"
+        "offered a job as defender of the town.\n"
+        "This came with a proper massive sward and Armor\n"
+        "so you naturally accept./n"
+        "its at that point fully clad as the towns defender\n"
+        "that a mighty raw echoes across the town\n"
+        "and a dragon flies over head.\n"
+        "The towns people look to you there new defender……….\n"
+        "'fu@#'"
+        )
+    play_again(player_character)
+
+
+
+def play_again(player_character):
+    """
+    give the player the choice to play again or quit.
+    """
     choice = input(
         "Would you play again?\n"
         "Type 'yes' to play again "
@@ -485,6 +511,14 @@ def player_death(player_character):
         main()
     if choice == "no":
         quit_game(player_character)
+
+def player_death(player_character):
+    """
+    This function should be called when ever the player dies.
+    It gives them the option to play again or quit the game.
+    """
+    delay_print(f'{player_character.name} has died!')
+    play_again(player_character)
 
 
 def quit_game(player_character):
