@@ -47,12 +47,12 @@ class Player(Entity):
     """
     This will handel all stats and info for the players character
     """
-    def __init__(self, items, cave, newtown):
+    def __init__(self, items, cave_save, newtown_save):
         Entity.__init__(
             self, 17, 5, "Player", Rusty_knife(), [Rusty_knife()])
         self.items = items
-        self.cave = cave
-        self.newtown = newtown
+        self.cave_save = cave_save
+        self.newtown_save = newtown_save
 
 
 class Goblin(Entity):
@@ -403,7 +403,7 @@ def goblin_cave_entrance(player_character):
     )
     print("")
     choice = input(
-        "Type 'option 1' to enter the cave/n"
+        "Type 'option 1' to enter the cave\n"
         "Type 'option 2' to investigate the area"
     )
     choice = input_validation(choice, "option1", "option2")
@@ -456,9 +456,9 @@ def goblin_boss_check(player_character):
     check how the character avived at this point and
     sends them to the correct encounter
     """
-    if player_character.newtown == "no":
+    if player_character.newtown_save == "no":
         goblin_boss_fight(player_character)
-    if player_character.newtown == "yes":
+    if player_character.newtown_save == "yes":
         goblin_boss_fight_late(player_character)
 
 
@@ -480,7 +480,7 @@ def goblin_boss_fight(player_character):
     choice = input_validation(choice, "flee", "fight")
     if choice == "fight":
         player_character = battle(player_character, Goblin_boss())
-        player_character.cave = "clear"
+        player_character.cave_save = "clear"
         delay_print(
             "You have slain to mighty goblin leader and saved the merchant!"
             "You escort the merchant and his wears back to new town."
@@ -488,7 +488,7 @@ def goblin_boss_fight(player_character):
         newtown(player_character)
     if choice == "flee":
         delay_print("You flee the cave and head straight to Newtown")
-        player_character.cave = "fled"
+        player_character.cave_save = "fled"
         newtown(player_character)
 
 
@@ -510,7 +510,7 @@ def goblin_boss_fight_late(player_character):
     choice = input_validation(choice, "flee", "fight")
     if choice == "fight":
         player_character = battle(player_character, Goblin_boss())
-        player_character.cave = "clear_late"
+        player_character.cave_save = "clear_late"
         delay_print(
             "You have slain to mighty goblin leader and saved the merchant!"
             "You escort the merchant and his wears back to new town."
@@ -518,7 +518,7 @@ def goblin_boss_fight_late(player_character):
         newtown(player_character)
     if choice == "flee":
         delay_print("You flee the cave and head straight to Newtown")
-        player_character.cave = "fled"
+        player_character.cave_save = "fled"
         newtown(player_character)
 
 
@@ -527,13 +527,13 @@ def newtown(player_character):
         "Through the trees you see a small town of about two dozen buildings\n"
         "surrounded by a 7ft wooden wall the gate lies open.\n"
     )
-    if player_character.cave == "no":
+    if player_character.cave_save == "no":
         newtown_no_cave(player_character)
-    if player_character.cave == "fled":
+    if player_character.cave_save == "fled":
         newtown_fled_cave(player_character)
-    if player_character.cave == "clear":
+    if player_character.cave_save == "clear":
         ending(player_character)
-    if player_character.cave == "late_clear":
+    if player_character.cave_save == "late_clear":
         ending(player_character)
 
 
@@ -559,7 +559,7 @@ def newtown_no_cave(player_character):
             "Guard: 'ok thanks for the information \n"
             "we will deal with it from here.'\n"
         )
-        player_character.newtown = "stay"
+        player_character.newtown_save = "stay"
         ending(player_character)
     if choice == "investigate":
         delay_print(
@@ -595,13 +595,13 @@ def ending(player_character):
     checks how the player completed the game a
     nd gives them the apropriate ending.
     """
-    if player_character.cave == "clear":
+    if player_character.cave_save == "clear":
         ending_one(player_character)
-    if player_character.cave == "fled":
+    if player_character.cave_save == "fled":
         ending_two(player_character)
-    if player_character.newtown == "stay":
+    if player_character.newtown_save == "stay":
         ending_three(player_character)
-    if player_character.cave == "late clear":
+    if player_character.cave_save == "late clear":
         ending_four(player_character)
 
 
