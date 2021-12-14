@@ -445,15 +445,29 @@ def newtown_no_cave(player_character):
     choice = input_validation(choice, "investigate", "stay")
     if choice == "stay":
         delay_print(
-            "Guard: 'ok thanks for the information"
+            "Guard: 'ok thanks for the information \n"
             "we will deal with it from here.'\n"
         )
-        ending_one(player_character)
+        player_character.newtown = "stay"
+        ending(player_character)
     if choice == "investigate":
         delay_print(
-            "Guard: 'Thanks for helping"
-            "we will pray for your speedy return'"
+            "Guard: 'Thanks for helping \n"
+            "we will pray for your speedy return' \n"
         )
+        delay_print(
+            "You head back to the cart in the road and follow the hidden trail. "
+        )
+        player_character.newtown = left
+        goblin_cave_entrance(player_character)
+
+def ending(player_character):
+    if player_character.cave == "clear":
+        ending_one(player_character)
+    if player_character.cave == "fled":
+        ending_two()
+    if player_character.newtown == "stay":
+        ending_three(player_character)
 
 def player_death(player_character):
     """
