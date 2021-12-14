@@ -589,6 +589,7 @@ def newtown_fled_cave(player_character):
     )
     ending(player_character)
 
+
 def ending(player_character):
     """
     checks how the player completed the game a
@@ -629,7 +630,21 @@ def ending_one(player_character):
     play_again(player_character)
 
 
-def ending_two(player_character)
+def ending_two(player_character):
+    delay_print(
+        f"The guards see {player_character.name} enter the town and asks\n"
+        "if you have seen a merchant on the road\n"
+        f"{player_character.name} tells the gurads what he saw in the cave\n"
+        F"{player_character.name} is thanked for their help and offered\n"
+        "a job as a scout for the town\n"
+        f"Naturally {player_character.name} takes the job as they get\n"
+        "a cool spear and armor\n"
+        "While out on their first scouting mission"
+        "they see a large dragon fly past\n"
+        "And descend on the town"
+        f"{player_character.name}: 'best give it an hour before I head back'"
+    )
+    play_again(player_character)
 
 
 def play_again(player_character):
@@ -637,6 +652,7 @@ def play_again(player_character):
     give the player the choice to play again or quit.
     """
     choice = input(
+        f"{player_character.name}'s adventure has ended.\n"
         "Would you play again?\n"
         "Type 'yes' to play again "
         "or Type 'no' to quit...:"
