@@ -337,12 +337,18 @@ def introduction(player_character):
 
 
 def goblin_ambush(player_character):
+    """
+    runs player through an ambush senario and calls the battle function
+    and then if they win calls the hidden_path function
+    """
     delay_print(
         "you see an abandoned cart in the road.\n"
         "The cart has been looted\n"
-        "you hear a rustling behind you as"
-        " a goblin charges at you from cover.\n"
+        "you hear a rustling behind you as\n"
+        "a goblin charges at you from cover.\n"
     )
+    player_character = battle(player_character, Goblin(["chalk", "rabit"]))
+    hidden_path(player_character)
 
 
 def ambush_goblin(player_character):
@@ -363,7 +369,8 @@ def ambush_goblin(player_character):
         player_character = battle(player_character, Goblin(["chalk", "rabit"]))
         hidden_path(player_character)
     if choice == "option2":
-        delay_print("More content coming soon...")
+        delay_print("you see a hidden trial past the goblin.")
+        goblin_cave_entrance(player_character)
 
 
 def hidden_path(player_character):
@@ -408,20 +415,42 @@ def goblin_cave_entrance(player_character):
 
 def wolf_fight(player_character):
     delay_print(
-        "As you enter the cave you notice something pull against your leg \n"
+        "As you enter the cave you notice something pull against your leg\n"
         "as you set of a trip wire. \n"
         "You hear a metallic sound as the alarm sounds….\n"
         "followed by a deep growl coming from the shadows.\n"
-        "A wolf leaps out from the darkness and attacks. \n"
+        "A wolf leaps out from the darkness and attacks.\n"
     )
     player_character = battle(player_character, Wolf())
-    goblin_boss_fight(player_character)
+    goblin_boss_check(player_character)
+
+
+def sneak_past_wolf(player_character):
+    delay_print(
+        "As you look around the entrance you\n"
+        "notice a thin wire strung across.\n"
+        "You take a closer look and see\n"
+        "it's a trip wire that would trigger an alarm\n"
+        "you now see in a scall alcove just in\n"
+        "the cave entrance a sleeping wolf.\n"
+    )
+
+
+def goblin_boss_check(player_character):
+    """
+    check how the character avived at this point and
+    sends them to the correct encounter
+    """
+    if player_character.newtown == "no":
+        goblin_boss_fight(player_character)
+    if player_character.newtown == "yes":
+        goblin_boss_fight_late(player_character)
 
 
 def goblin_boss_fight(player_character):
     delay_print(
         "You see a flickering light at the end of the tunnel.\n"
-        "As you approach the tunnel bands and opens into a large cavern.\n"
+        "As you approach the tunnel bends and opens into a large cavern.\n"
         "There is a large cooking pot boiling what looks like stew\n"
         "on a large fire.\n"
         "A large goblin is currently trying to winch\n"
@@ -448,6 +477,36 @@ def goblin_boss_fight(player_character):
         newtown(player_character)
 
 
+def goblin_boss_fight_late(player_character):
+    delay_print(
+        "You see a flickering light at the end of the tunnel.\n"
+        "As you approach the tunnel bends and opens into a large cavern.\n"
+        "There is a large empty cooking pot with what looks like\n"
+        "human bones next to it\n"
+        "A large goblin is currently rubbing its belly\n"
+        "The goblin looks up to see you and says\n"
+        "'looks like you missed dinner'\n"
+        "as it grins and pulls out its axe.\n"
+    )
+    choice = input(
+        'Fight the Goblin or flee?'
+        'Type "fight" to fight or "flee" to flee/n:'
+    )
+    choice = input_validation(choice, "flee", "fight")
+    if choice == "fight":
+        player_character = battle(player_character, Goblin_boss())
+        player_character.cave = "clear_late"
+        delay_print(
+            "You have slain to mighty goblin leader and saved the merchant!"
+            "You escort the merchant and his wears back to new town."
+        )
+        newtown(player_character)
+    if choice == "flee":
+        delay_print("You flee the cave and head straight to Newtown")
+        player_character.cave = "fled"
+        newtown(player_character)
+
+
 def newtown(player_character):
     delay_print(
         "Through the trees you see a small town of about two dozen buildings\n"
@@ -459,6 +518,8 @@ def newtown(player_character):
         newtown_fled_cave(player_character)
     if player_character.cave == "clear":
         newtown_clear_cave(player_character)
+    if player_character.cave == "late_clear":
+        newtown_late_clear(player_character)
 
 
 def newtown_no_cave(player_character):
@@ -499,12 +560,18 @@ def newtown_no_cave(player_character):
 
 
 def ending(player_character):
+    """
+    checks how the player completed the game a
+    nd gives them the apropriate ending.
+    """
     if player_character.cave == "clear":
         ending_one(player_character)
     if player_character.cave == "fled":
         ending_two(player_character)
     if player_character.newtown == "stay":
         ending_three(player_character)
+    if player_character.cave == "late clear":
+        ending_four(player_character)
 
 
 def ending_one(player_character):
