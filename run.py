@@ -74,6 +74,9 @@ class Goblin_boss(Entity):
 
 
 class Wolf(Entity):
+    """
+    wolf class
+    """
     def __init__(self):
         Entity.__init__(self, 11, 4, "wolf", Bite(), [])
 
@@ -91,26 +94,42 @@ class Weapon:
         self.name = name
 
     def atk_mod(self):
+        """
+        calculates the attack damage based on the weapons min and max damage.
+        genrated a random number between min and max atk
+        """
         damage = random.randint(self.min_atk, self.max_atk)
         return damage
 
 
 class Rusty_knife(Weapon):
+    """
+    basic starter weapon for player character
+    """
     def __init__(self):
         Weapon.__init__(self, 1, 5, "Rusty knife")
 
 
 class Scimitar(Weapon):
+    """
+    second tier weapon has a chance to do slightly more damage
+    """
     def __init__(self):
         Weapon.__init__(self, 1, 7, "Scimitar")
 
 
 class Axe(Weapon):
+    """
+    this weapon has the highest damage potential in the game
+    """
     def __init__(self):
         Weapon.__init__(self, 1, 9, "Axe")
 
 
 class Bite(Weapon):
+    """
+    Natural weapon should only be used by crutures with a natural bite force.
+    """
     def __init__(self):
         Weapon.__init__(self, 2, 5, "Bite")
 
@@ -138,6 +157,12 @@ def weapon_name_list(weapon):
 
 
 def battle(player_character, enemy):
+    """
+    main combat loop. this will sicle through cambate between
+    player character and selcted enemy class.
+    the loop will end when ether the player or the enemy has
+    less then 0 health.
+    """
     while player_character.health > 0 and enemy.health > 0:
         player_damage = player_character.make_atk()
         enemy_damage = enemy.make_atk()
@@ -223,6 +248,10 @@ def loot(player_character, enemy):
 
 
 def weapon_input_validation(choice, weapon_list):
+    """
+    this checks what weapons are in the chracrers weapons list
+    and validates weapon choice inputed by the player.
+    """
     valid_choice = choice.rstrip().lstrip().lower().capitalize()
     if valid_choice in weapon_list:
         return valid_choice
@@ -264,6 +293,10 @@ def input_validation(choice, *args):
 
 
 def banner():
+    """
+    uses Pyfiglet lybary to create a
+    cool looking banner for the game title.
+    """
     banner1 = pyfiglet.figlet_format("Wellcome to")
     banner2 = pyfiglet.figlet_format("Adventure game")
     print(banner1)
@@ -458,9 +491,10 @@ def newtown_no_cave(player_character):
             "we will pray for your speedy return' \n"
         )
         delay_print(
-            "You head back to the cart in the road and follow the hidden trail. "
+            "You head back to the cart in the road\n"
+            "and follow the hidden trail."
         )
-        player_character.newtown = left
+        player_character.newtown = "left"
         goblin_cave_entrance(player_character)
 
 
@@ -475,7 +509,8 @@ def ending(player_character):
 
 def ending_one(player_character):
     """
-    the player will get this ending if they clear the cave before reaching newtown.
+    the player will get this ending if they clear the
+    cave before reaching newtown.
     """
     delay_print(
         "The guards see you enter the city with the merchant in tow.\n"
@@ -496,7 +531,6 @@ def ending_one(player_character):
     play_again(player_character)
 
 
-
 def play_again(player_character):
     """
     give the player the choice to play again or quit.
@@ -511,6 +545,7 @@ def play_again(player_character):
         main()
     if choice == "no":
         quit_game(player_character)
+
 
 def player_death(player_character):
     """
