@@ -532,9 +532,9 @@ def newtown(player_character):
     if player_character.cave == "fled":
         newtown_fled_cave(player_character)
     if player_character.cave == "clear":
-        newtown_clear_cave(player_character)
+        ending(player_character)
     if player_character.cave == "late_clear":
-        newtown_late_clear(player_character)
+        ending(player_character)
 
 
 def newtown_no_cave(player_character):
@@ -576,7 +576,8 @@ def newtown_no_cave(player_character):
 
 def newtown_fled_cave(player_character):
     delay_print(
-        "As you  draw level with the gates a guard approaches.\n"
+        f"As {player_character.name} drew level with the gates\n"
+        "a guard approached.\n"
         "'Hail stranger “have you seen a merchant on the road?'\n"
         "'He was meant to arrive yesterday\n"
         "and we are in desperate need of supplies.\n'"
@@ -614,17 +615,21 @@ def ending_one(player_character):
         "the Wayfaring Inn to rest up.\n"
         "By the next morning the guard had gathered the much need goods\n"
         "from cave and seen that the merchant was looked after.\n"
-        "You where named hero in the town and \n"
+        f"{player_character.name} was named hero in the town and \n"
         "offered a job as defender of the town.\n"
         "This came with a proper massive sward and Armor\n"
         "so you naturally accept./n"
         "its at that point fully clad as the towns defender\n"
         "that a mighty raw echoes across the town\n"
         "and a dragon flies over head.\n"
-        "The towns people look to you there new defender……….\n"
+        f"The towns people looked to {player_character.name}\n"
+        "there new defender……….\n"
         "'fu@#'"
         )
     play_again(player_character)
+
+
+def ending_two(player_character)
 
 
 def play_again(player_character):
