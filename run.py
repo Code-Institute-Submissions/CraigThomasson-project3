@@ -431,10 +431,24 @@ def sneak_past_wolf(player_character):
         "notice a thin wire strung across.\n"
         "You take a closer look and see\n"
         "it's a trip wire that would trigger an alarm\n"
-        "you now see in a scall alcove just in\n"
+        "you now see in a small alcove just in\n"
         "the cave entrance a sleeping wolf.\n"
     )
-    goblin_boss_check(player_character)
+    choice = input(
+        "Type 'sneak' to sneak past the wolf\n"
+        "Type 'attack' to attack the wolf\n: "
+        )
+    choice = input_validation(choice, "sneak", "attack")
+    if choice == "sneak":
+        delay_print(
+            "you sneak past the wolf in to the cave.\n"
+        )
+        goblin_boss_check(player_character)
+    if choice == "attack":
+        delay_print(
+            "You attack the wolf"
+        )
+        wolf_fight(player_character)
 
 
 def goblin_boss_check(player_character):
@@ -559,6 +573,20 @@ def newtown_no_cave(player_character):
         player_character.newtown = "left"
         goblin_cave_entrance(player_character)
 
+
+def newtown_fled_cave(player_character):
+    delay_print(
+        "As you  draw level with the gates a guard approaches.\n"
+        "'Hail stranger “have you seen a merchant on the road?'\n"
+        "'He was meant to arrive yesterday\n"
+        "and we are in desperate need of supplies.\n'"
+        "You: 'there was a abandoned cart on the road\n"
+        "with a goblin watching it from, the bushes'.\n"
+        "and tracks that led to a cave.\n"
+        "it look like the goblins where going to eat him\n"
+        "guard: 'You look like you had a fright we will take it from here"
+    )
+    ending(player_character)
 
 def ending(player_character):
     """
