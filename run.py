@@ -434,6 +434,7 @@ def sneak_past_wolf(player_character):
         "you now see in a scall alcove just in\n"
         "the cave entrance a sleeping wolf.\n"
     )
+    goblin_boss_check(player_character)
 
 
 def goblin_boss_check(player_character):
