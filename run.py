@@ -647,6 +647,42 @@ def ending_two(player_character):
     play_again(player_character)
 
 
+def ending_three(player_character):
+    delay_print(
+        f"{player_character.name} gets a job as a messanger in town.\n"
+        "As they leave to deliver thire first message\n"
+        "they see a large dragon desend on the town.\n"
+        f"{player_character.name}: 'glad i didnt get that guard job!'"
+    )
+    play_again(player_character)
+
+
+def ending_four(player_character):
+    """
+    the player will get this ending if they clear the
+    cave before after leaving new town.
+    """
+    delay_print(
+        f"The guards see {player_character.name} enter the city.\n"
+        "They see that they are battered and bruised and take them to\n"
+        "the Wayfaring Inn to rest up.\n"
+        "By the next morning the guards had gathered the much need goods\n"
+        "from cave.\n"
+        f"{player_character.name} was named given a job \n"
+        "as a town guard\n"
+        "This came with a good pay and standard guard gear\n"
+        "so you naturally accept./n"
+        "it's at that point on your first guard shift\n"
+        "that a mighty raw echoes across the town\n"
+        "and a dragon flies over head.\n"
+        "The towns people cry for the gaurds to do somthing"
+        "there new defender……….\n"
+        "'fu@#'"
+        )
+    play_again(player_character)
+
+
+
 def play_again(player_character):
     """
     give the player the choice to play again or quit.
@@ -656,7 +692,7 @@ def play_again(player_character):
         "Would you play again?\n"
         "Type 'yes' to play again "
         "or Type 'no' to quit...:"
-        )
+    )
     choice = input_validation(choice, "yes", "no")
     if choice == "yes":
         main()
@@ -685,17 +721,17 @@ def quit_game(player_character):
         )
 
 
-# def main():
-#     banner()
-#     player_character = get_player_name()
-#     introduction(player_character)
+def main():
+    banner()
+    player_character = get_player_name()
+    introduction(player_character)
 
 
-# main()
+main()
 
-def test_bench():
-    player_character = Player(["fire starter"])
-    goblin_boss_fight(player_character)
-    print("wining")
+# def test_bench():
+#     player_character = Player(["fire starter"])
+#     goblin_boss_fight(player_character)
+#     print("wining")
 
-test_bench()
+# test_bench()
