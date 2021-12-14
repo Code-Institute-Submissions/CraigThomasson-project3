@@ -378,7 +378,7 @@ def hidden_path(player_character):
     the player is given a chioce to follow a hiden path or go on to town
     """
     delay_print(
-        "As you begin to head of down the road "
+        "As you begin to head of down the road\n"
         "you notice a trail behind the bushes where the goblin was hiding.\n"
     )
     choice = input(
@@ -395,7 +395,7 @@ def hidden_path(player_character):
 
 def goblin_cave_entrance(player_character):
     delay_print(
-        "You follow the track for over an hour before you come "
+        "You follow the track for over an hour before you come\n"
         "to the foot of a large hill."
     )
     delay_print(
