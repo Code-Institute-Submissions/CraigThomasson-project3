@@ -238,6 +238,8 @@ def loot(player_character, enemy):
         "Type 'continue' to continue...:\n"
         )
     choice = input_validation(choice, "loot", "continue")
+    if choice == "continue":
+        return player_character
     if choice == "loot":
         # some enemys like wolves do not have items in there class
         # try and except is used to insure there are nno issues if
@@ -552,7 +554,7 @@ def newtown(player_character):
 def newtown_no_cave(player_character):
     delay_print(
         "As you  draw level with the gates a guard approaches.\n"
-        "'Hail stranger “have you seen a merchant on the road?'\n"
+        "'Hail stranger have you seen a merchant on the road?'\n"
         "'He was meant to arrive yesterday\n"
         "and we are in desperate need of supplies.\n'"
         "You: 'there was a abandoned cart on the road\n"
