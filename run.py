@@ -419,7 +419,8 @@ def goblin_cave_entrance(player_character):
     choice = input_validation(choice, "option1", "option2")
     if choice == "option1":
         delay_print(
-            "As you enter the cave you notice something pull against your leg\n"
+            "As you enter the cave you notice\n"
+            "something pull against your leg\n"
             "as you set of a trip wire. \n"
             "You hear a metallic sound as the alarm sounds….\n"
             "followed by a deep growl coming from the shadows.\n"
