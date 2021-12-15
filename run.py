@@ -182,6 +182,7 @@ def battle(player_character, enemy):
         )
         enemy.health -= player_damage
         delay_print(f" {enemy.name}'s health is now {enemy.health}\n")
+        print("\n")
         if enemy.health <= 0:
             delay_print(f"you have slane the {enemy.name} \n")
             player_character = loot(player_character, enemy)
@@ -196,6 +197,7 @@ def battle(player_character, enemy):
         delay_print(
             f" {player_character.name}'s health is now "
             f'{player_character.health}\n'
+            "\n"
         )
         if player_character.health <= 0:
             delay_print(f"you have been slain by the {enemy.name}....\n")
@@ -236,6 +238,7 @@ def loot(player_character, enemy):
     choice = input(
         f"Type 'loot' if you would like to loot the {enemy.name}\n"
         "Type 'continue' to continue...:\n"
+        "\n"
         )
     choice = input_validation(choice, "loot", "continue")
     if choice == "continue":
@@ -255,6 +258,7 @@ def loot(player_character, enemy):
             return player_character
         except AttributeError:
             delay_print(f'{enemy.name} has nothing to loot \n')
+            print("\n")
             return player_character
 
 
@@ -325,6 +329,7 @@ def get_player_name():
         f'Well met {player_character.name}!\n'
         f' Take care on these roads there are goblins on the loose.\n'
     )
+    print("\n")
     return player_character
 
 
@@ -340,6 +345,7 @@ def introduction(player_character):
         "Type <option 1> to invstigate\n"
         "Type <option 2> to sneak around:\n"
     )
+    print("\n")
     choice = input_validation(choice, "option1", "option2")
     if choice == "option1":
         goblin_ambush(player_character)
@@ -358,6 +364,7 @@ def goblin_ambush(player_character):
         "you hear a rustling behind you as\n"
         "a goblin charges at you from cover.\n"
     )
+    print("\n")
     player_character = battle(player_character, Goblin(["chalk", "rabit"]))
     hidden_path(player_character)
 
@@ -398,6 +405,7 @@ def hidden_path(player_character):
         "Type 'option 2' to continue down the road to Newtown\n"
         "...: "
     )
+    print()
     choice = input_validation(choice, "option1", "option2")
     if choice == "option1":
         goblin_cave_entrance(player_character)
@@ -428,6 +436,7 @@ def goblin_cave_entrance(player_character):
             "followed by a deep growl coming from the shadows.\n"
             "A wolf leaps out from the darkness and attacks.\n"
         )
+        print("\n")
         wolf_fight(player_character)
     if choice == "option2":
         sneak_past_wolf(player_character)
@@ -456,11 +465,13 @@ def sneak_past_wolf(player_character):
         delay_print(
             "you sneak past the wolf in to the cave.\n"
         )
+        print("\n")
         goblin_boss_check(player_character)
     if choice == "attack":
         delay_print(
             "You attack the wolf\n"
         )
+        print("\n")
         wolf_fight(player_character)
 
 
@@ -486,6 +497,7 @@ def goblin_boss_fight(player_character):
         "The goblin looks up to see you and says 'just in time for dinner'\n"
         "as it grins and pulls out its axe.\n"
     )
+    print("\n")
     choice = input(
         'Fight the Goblin or flee?'
         'Type "fight" to fight or "flee" to flee\n:'
@@ -498,11 +510,12 @@ def goblin_boss_fight(player_character):
             "You have slain to mighty goblin leader and saved the merchant!\n"
             "You escort the merchant and his wears back to new town.\n"
         )
+        print("\n")
         newtown(player_character)
     if choice == "flee":
         delay_print("You flee the cave and head straight to Newtown\n")
         player_character.cave_save = "fled"
-        print("nts", player_character.newtown_save)
+        print("\n")
         newtown(player_character)
 
 
@@ -517,6 +530,7 @@ def goblin_boss_fight_late(player_character):
         "'looks like you missed dinner'\n"
         "as it grins and pulls out its axe.\n"
     )
+    print("\n")
     choice = input(
         'Fight the Goblin or flee?'
         'Type "fight" to fight or "flee" to flee\n:'
@@ -529,10 +543,12 @@ def goblin_boss_fight_late(player_character):
             "You have slain to mighty goblin leader but he ate the merchant!\n"
             "You head back to newtown.\n"
         )
+        print("\n")
         newtown(player_character)
     if choice == "flee":
         delay_print("You flee the cave and head straight to Newtown")
         player_character.cave_save = "fled"
+        print("\n")
         newtown(player_character)
 
 
@@ -567,6 +583,7 @@ def newtown_no_cave(player_character):
         "and investigate\n"
         "Type: 'stay' to give directions and stay in safe in town\n"
     )
+    print("\n")
     choice = input_validation(choice, "investigate", "stay")
     if choice == "stay":
         delay_print(
@@ -584,6 +601,7 @@ def newtown_no_cave(player_character):
             "You head back to the cart in the road\n"
             "and follow the hidden trail.\n"
         )
+        print("\n")
         player_character.newtown_save = "left"
         goblin_cave_entrance(player_character)
 
@@ -601,6 +619,7 @@ def newtown_fled_cave(player_character):
         "it look like the goblins where going to eat him\n"
         "guard: 'You look like you had a fright we will take it from here\n"
     )
+    print("\n")
     ending(player_character)
 
 
@@ -639,8 +658,9 @@ def ending_one(player_character):
         "and a dragon flies over head.\n"
         f"The towns people looked to {player_character.name}\n"
         "there new defender……….\n"
-        "'fu@#'\n"
+        "'fu@#'"
         )
+    print("\n")
     play_again(player_character)
 
 
@@ -691,8 +711,9 @@ def ending_four(player_character):
         "and a dragon flies over head.\n"
         "The towns people cry for the gaurds to do somthing"
         "there new defender……….\n"
-        "'fu@#'\n"
+        "'fu@#'"
         )
+    print("\n")
     play_again(player_character)
 
 
