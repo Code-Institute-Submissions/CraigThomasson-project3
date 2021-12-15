@@ -32,7 +32,7 @@ class Entity:
         for weapon in self.weapon_inventory:
             weapon_list.append(weapon.name)
         delay_print(f'your current weapon list is: {weapon_list}.')
-        delay_print(f'{self.weapon.name} is equipped.')
+        delay_print(f'{self.weapon.name} is equipped.\n')
         weapon_choice = input(
             ' Type the  name of the weapon you would like'
             ' to equip: '
@@ -49,7 +49,7 @@ class Player(Entity):
     """
     def __init__(self, items, cave_save, newtown_save):
         Entity.__init__(
-            self, 19, 5, "Player", Rusty_knife(), [Rusty_knife(), spear()])
+            self, 19, 5, "Player", Rusty_knife(), [Rusty_knife(), Spear()])
         self.items = items
         self.cave_save = cave_save
         self.newtown_save = newtown_save
@@ -110,12 +110,12 @@ class Rusty_knife(Weapon):
         Weapon.__init__(self, 1, 5, "Rusty knife")
 
 
-class spear(Weapon):
+class Spear(Weapon):
     """
     basic starter spear for player characters
     """
     def __init__(self):
-        Weapon.__init__(self, 2, 7, "spear")
+        Weapon.__init__(self, 2, 7, "Spear")
 
 
 class Scimitar(Weapon):
@@ -194,7 +194,7 @@ def battle(player_character, enemy):
         )
         player_character.health -= enemy_damage
         delay_print(
-            f" {player_character.name}'s health is now \n"
+            f" {player_character.name}'s health is now "
             f'{player_character.health}\n'
         )
         if player_character.health <= 0:
