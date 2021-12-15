@@ -483,8 +483,8 @@ def goblin_boss_fight(player_character):
         player_character = battle(player_character, Goblin_boss())
         player_character.cave_save = "clear"
         delay_print(
-            "You have slain to mighty goblin leader and saved the merchant!"
-            "You escort the merchant and his wears back to new town."
+            "You have slain to mighty goblin leader and saved the merchant!\n"
+            "You escort the merchant and his wears back to new town.\n"
         )
         newtown(player_character)
     if choice == "flee":
@@ -507,15 +507,15 @@ def goblin_boss_fight_late(player_character):
     )
     choice = input(
         'Fight the Goblin or flee?'
-        'Type "fight" to fight or "flee" to flee/n:'
+        'Type "fight" to fight or "flee" to flee\n:'
     )
     choice = input_validation(choice, "flee", "fight")
     if choice == "fight":
         player_character = battle(player_character, Goblin_boss())
         player_character.cave_save = "clear_late"
         delay_print(
-            "You have slain to mighty goblin leader and saved the merchant!"
-            "You escort the merchant and his wears back to new town."
+            "You have slain to mighty goblin leader but he ate the merchant!\n"
+            "You head back to newtown.\n"
         )
         newtown(player_character)
     if choice == "flee":
@@ -553,7 +553,7 @@ def newtown_no_cave(player_character):
     choice = input(
         "Type: 'investigate' to go back to the cart in the road\n"
         "and investigate\n"
-        "Type: 'stay' to give directions and stay in safe in town"
+        "Type: 'stay' to give directions and stay in safe in town\n"
     )
     choice = input_validation(choice, "investigate", "stay")
     if choice == "stay":
@@ -570,7 +570,7 @@ def newtown_no_cave(player_character):
         )
         delay_print(
             "You head back to the cart in the road\n"
-            "and follow the hidden trail."
+            "and follow the hidden trail.\n"
         )
         player_character.newtown_save = "left"
         goblin_cave_entrance(player_character)
@@ -587,7 +587,7 @@ def newtown_fled_cave(player_character):
         "with a goblin watching it from, the bushes'.\n"
         "and tracks that led to a cave.\n"
         "it look like the goblins where going to eat him\n"
-        "guard: 'You look like you had a fright we will take it from here"
+        "guard: 'You look like you had a fright we will take it from here\n"
     )
     ending(player_character)
 
@@ -627,7 +627,7 @@ def ending_one(player_character):
         "and a dragon flies over head.\n"
         f"The towns people looked to {player_character.name}\n"
         "there new defender……….\n"
-        "'fu@#'"
+        "'fu@#'\n"
         )
     play_again(player_character)
 
@@ -641,10 +641,10 @@ def ending_two(player_character):
         "a job as a scout for the town\n"
         f"Naturally {player_character.name} takes the job as they get\n"
         "a cool spear and armor\n"
-        "While out on their first scouting mission"
+        "While out on their first scouting mission\n"
         "they see a large dragon fly past\n"
-        "And descend on the town"
-        f"{player_character.name}: 'best give it an hour before I head back'"
+        "And descend on the town\n"
+        f"{player_character.name}: 'best give it an hour before I head back'\n"
     )
     play_again(player_character)
 
@@ -654,7 +654,7 @@ def ending_three(player_character):
         f"{player_character.name} gets a job as a messanger in town.\n"
         "As they leave to deliver thire first message\n"
         "they see a large dragon desend on the town.\n"
-        f"{player_character.name}: 'glad i didnt get that guard job!'"
+        f"{player_character.name}: 'glad i didnt get that guard job!'\n"
     )
     play_again(player_character)
 
@@ -679,7 +679,7 @@ def ending_four(player_character):
         "and a dragon flies over head.\n"
         "The towns people cry for the gaurds to do somthing"
         "there new defender……….\n"
-        "'fu@#'"
+        "'fu@#'\n"
         )
     play_again(player_character)
 
@@ -691,8 +691,8 @@ def play_again(player_character):
     choice = input(
         f"{player_character.name}'s adventure has ended.\n"
         "Would you play again?\n"
-        "Type 'yes' to play again "
-        "or Type 'no' to quit...:"
+        "Type 'yes' to play again\n"
+        "or Type 'no' to quit...:\n"
     )
     choice = input_validation(choice, "yes", "no")
     if choice == "yes":
@@ -706,7 +706,7 @@ def player_death(player_character):
     This function should be called when ever the player dies.
     It gives them the option to play again or quit the game.
     """
-    delay_print(f'{player_character.name} has died!')
+    delay_print(f'{player_character.name} has died!\n')
     play_again(player_character)
 
 
@@ -717,7 +717,7 @@ def quit_game(player_character):
     It simply prints a message to the player once they decid to end the game.
     """
     delay_print(
-        f"It is with a heavy heart I bid the fairwell {player_character.name}"
+        f"It's with a heavy heart I bid the fairwell {player_character.name}\n"
         "I hope to see you again one day on a new adventure!"
         )
 
