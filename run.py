@@ -175,9 +175,9 @@ def battle(player_character, enemy):
         player_damage = player_character.make_atk()
         enemy_damage = enemy.make_atk()
         delay_print(
-            f'{player_character.name} attacks \n'
-            f'{enemy.name} with \n'
-            f'{player_character.weapon.name} for \n'
+            f'{player_character.name} attacks '
+            f'{enemy.name} with '
+            f'{player_character.weapon.name} for '
             f'{player_damage} damage\n'
         )
         enemy.health -= player_damage
@@ -187,9 +187,9 @@ def battle(player_character, enemy):
             player_character = loot(player_character, enemy)
             return player_character
         delay_print(
-            f'{enemy.name} attacks \n'
-            f'{player_character.name} with \n'
-            f'{enemy.weapon.name} for \n'
+            f'{enemy.name} attacks '
+            f'{player_character.name} with '
+            f'{enemy.weapon.name} for '
             f'{enemy_damage} damage \n'
         )
         player_character.health -= enemy_damage
