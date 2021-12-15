@@ -35,7 +35,7 @@ class Entity:
         delay_print(f'{self.weapon.name} is equipped.\n')
         weapon_choice = input(
             ' Type the  name of the weapon you would like'
-            ' to equip: '
+            ' to equip: \n'
         )
         weapon_choice = weapon_input_validation(weapon_choice, weapon_list)
         for weapon in self.weapon_inventory:
@@ -151,7 +151,7 @@ def delay_print(s):
     for c in s:
         sys.stdout.write(c)
         sys.stdout.flush()
-        time.sleep(0.01)
+        time.sleep(0.05)
 
 
 def weapon_name_list(weapon):
@@ -418,19 +418,19 @@ def goblin_cave_entrance(player_character):
     )
     choice = input_validation(choice, "option1", "option2")
     if choice == "option1":
+        delay_print(
+            "As you enter the cave you notice something pull against your leg\n"
+            "as you set of a trip wire. \n"
+            "You hear a metallic sound as the alarm sounds….\n"
+            "followed by a deep growl coming from the shadows.\n"
+            "A wolf leaps out from the darkness and attacks.\n"
+        )
         wolf_fight(player_character)
     if choice == "option2":
         sneak_past_wolf(player_character)
 
 
 def wolf_fight(player_character):
-    delay_print(
-        "As you enter the cave you notice something pull against your leg\n"
-        "as you set of a trip wire. \n"
-        "You hear a metallic sound as the alarm sounds….\n"
-        "followed by a deep growl coming from the shadows.\n"
-        "A wolf leaps out from the darkness and attacks.\n"
-    )
     player_character = battle(player_character, Wolf())
     goblin_boss_check(player_character)
 
@@ -456,7 +456,7 @@ def sneak_past_wolf(player_character):
         goblin_boss_check(player_character)
     if choice == "attack":
         delay_print(
-            "You attack the wolf"
+            "You attack the wolf\n"
         )
         wolf_fight(player_character)
 
