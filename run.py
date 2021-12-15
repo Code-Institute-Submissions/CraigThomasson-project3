@@ -167,26 +167,26 @@ def battle(player_character, enemy):
         player_damage = player_character.make_atk()
         enemy_damage = enemy.make_atk()
         delay_print(
-            f'{player_character.name} attacks '
-            f'{enemy.name} with '
-            f'{player_character.weapon.name} for '
-            f'{player_damage} damage'
+            f'{player_character.name} attacks \n'
+            f'{enemy.name} with \n'
+            f'{player_character.weapon.name} for \n'
+            f'{player_damage} damage\n'
         )
         enemy.health -= player_damage
         delay_print(f" {enemy.name}'s health is now {enemy.health}\n")
         if enemy.health <= 0:
-            delay_print(f"you have slane the {enemy.name} ")
+            delay_print(f"you have slane the {enemy.name} \n")
             player_character = loot(player_character, enemy)
             return player_character
         delay_print(
-            f'{enemy.name} attacks '
-            f'{player_character.name} with '
-            f'{enemy.weapon.name} for '
-            f'{enemy_damage} damage'
+            f'{enemy.name} attacks \n'
+            f'{player_character.name} with \n'
+            f'{enemy.weapon.name} for \n'
+            f'{enemy_damage} damage \n'
         )
         player_character.health -= enemy_damage
         delay_print(
-            f" {player_character.name}'s health is now "
+            f" {player_character.name}'s health is now \n"
             f'{player_character.health}\n'
         )
         if player_character.health <= 0:
@@ -200,7 +200,7 @@ def battle_option(player, enemy):
     Gives the player some options during combat
     """
     delay_print(
-        f"you are in combat with a {enemy.name}"
+        f"you are in combat with a {enemy.name}\n"
         f" you can: Attack or change weapon\n"
     )
     choice = input(
@@ -208,7 +208,7 @@ def battle_option(player, enemy):
         " To change weapon type: option 2.\n: "
     )
     choice = input_validation(choice, "option1", "option2")
-    print("")
+    print("\n")
     if choice == "option1":
         return player
     if choice == "option2":
@@ -223,11 +223,11 @@ def loot(player_character, enemy):
     to player_character. items and player-character.weapon_inventory.
     prints what items and weapons have been looted.
     """
-    print("")
+    print("\n")
     delay_print(f"{enemy.name} lies dead at your feet\n")
     choice = input(
         f"Type 'loot' if you would like to loot the {enemy.name}\n"
-        "Type 'continue' to continue...:"
+        "Type 'continue' to continue...:\n"
         )
     choice = input_validation(choice, "loot", "continue")
     if choice == "loot":
@@ -258,13 +258,13 @@ def weapon_input_validation(choice, weapon_list):
         return valid_choice
     while valid_choice not in weapon_list:
         print(
-            "Invalid choice please use one of the "
+            "Invalid choice please use one of the \n"
             "following options to continie", weapon_list
         )
         valid_choice = input(
-            'Enter choice here..:'
+            'Enter choice here..:\n'
         ).rstrip().lstrip().lower().capitalize()
-        print("")
+        print("\n")
         if valid_choice in weapon_list:
             return valid_choice
 
@@ -273,7 +273,7 @@ def input_validation(choice, *args):
     """
     Takes player in put on mutilple givin options(args)
     and validates th input.
-    If input is invalsid it promps the useer to input again.
+    If input is invalid it promps the useer to input again.
     It then returns the validated input.
     """
     valid_choice = choice.replace(" ", "")
@@ -282,7 +282,7 @@ def input_validation(choice, *args):
         return valid_choice
     while valid_choice not in args:
         print(
-            "Invalid choice please use one of the "
+            "Invalid choice please use one of the \n"
             "following options to continie", args
         )
         valid_choice = input('Enter choice here..:').replace(" ", "").lower()
@@ -312,7 +312,7 @@ def get_player_name():
     player_character = Player(["fire starter"], "no", "no")
     player_character.name = input("Hello traveller what is your name?: ")
     delay_print(
-        f'Well met {player_character.name}!'
+        f'Well met {player_character.name}!\n'
         f' Take care on these roads there are goblins on the loose.\n'
     )
     return player_character
@@ -323,7 +323,7 @@ def introduction(player_character):
     runs a basic intro for the player.
     """
     delay_print(
-        "You are traveling alone to newtown"
+        "You are traveling alone to newtown\n"
         " when you see somthing in the road.\n"
     )
     choice = input(
@@ -358,19 +358,20 @@ def ambush_goblin(player_character):
     when they see the cart in the road.
     """
     delay_print(
-        "As you sneak around"
+        "As you sneak around\n"
         " you notice a goblin hiding behind a bush watching the road\n"
     )
     choice = input(
         "What would you like to do?\n"
-        "Type 'option 1' to attack\nType 'option 2' to sneak past....:\n"
+        "Type 'option 1' to attack\n"
+        "Type 'option 2' to sneak past....:\n"
     )
     choice = input_validation(choice, "option1", "option2")
     if choice == "option1":
         player_character = battle(player_character, Goblin(["chalk", "rabit"]))
         hidden_path(player_character)
     if choice == "option2":
-        delay_print("you see a hidden trial past the goblin.")
+        delay_print("you see a hidden trial past the goblin.\n")
         goblin_cave_entrance(player_character)
 
 
