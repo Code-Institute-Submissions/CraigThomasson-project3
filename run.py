@@ -488,7 +488,7 @@ def goblin_boss_fight(player_character):
     )
     choice = input(
         'Fight the Goblin or flee?'
-        'Type "fight" to fight or "flee" to flee/n:'
+        'Type "fight" to fight or "flee" to flee\n:'
     )
     choice = input_validation(choice, "flee", "fight")
     if choice == "fight":
@@ -633,7 +633,7 @@ def ending_one(player_character):
         f"{player_character.name} was named hero in the town and \n"
         "offered a job as defender of the town.\n"
         "This came with a proper massive sward and Armor\n"
-        "so you naturally accept./n"
+        "so you naturally accept.\n"
         "its at that point fully clad as the towns defender\n"
         "that a mighty raw echoes across the town\n"
         "and a dragon flies over head.\n"
@@ -685,7 +685,7 @@ def ending_four(player_character):
         f"{player_character.name} was named given a job \n"
         "as a town guard\n"
         "This came with a good pay and standard guard gear\n"
-        "so you naturally accept./n"
+        "so you naturally accept.\n"
         "it's at that point on your first guard shift\n"
         "that a mighty raw echoes across the town\n"
         "and a dragon flies over head.\n"
