@@ -31,7 +31,7 @@ class Entity:
         weapon_list = []
         for weapon in self.weapon_inventory:
             weapon_list.append(weapon.name)
-        delay_print(f'your current weapon list is: {weapon_list}.')
+        delay_print(f'your current weapon list is: {weapon_list}.\n')
         delay_print(f'{self.weapon.name} is equipped.\n')
         weapon_choice = input(
             ' Type the  name of the weapon you would like'
