@@ -49,7 +49,7 @@ class Player(Entity):
     """
     def __init__(self, items, cave_save, newtown_save):
         Entity.__init__(
-            self, 17, 5, "Player", Rusty_knife(), [Rusty_knife()])
+            self, 19, 5, "Player", Rusty_knife(), [Rusty_knife(), spear()])
         self.items = items
         self.cave_save = cave_save
         self.newtown_save = newtown_save
@@ -108,6 +108,14 @@ class Rusty_knife(Weapon):
     """
     def __init__(self):
         Weapon.__init__(self, 1, 5, "Rusty knife")
+
+
+class spear(Weapon):
+    """
+    basic starter spear for player characters
+    """
+    def __init__(self):
+        Weapon.__init__(self, 2, 7, "spear")
 
 
 class Scimitar(Weapon):
@@ -398,15 +406,15 @@ def hidden_path(player_character):
 def goblin_cave_entrance(player_character):
     delay_print(
         "You follow the track for over an hour before you come\n"
-        "to the foot of a large hill."
+        "to the foot of a large hill.\n"
     )
     delay_print(
-        "The track leads up to a hidden cave opening"
+        "The track leads up to a hidden cave opening\n"
     )
     print("")
     choice = input(
         "Type 'option 1' to enter the cave\n"
-        "Type 'option 2' to investigate the area"
+        "Type 'option 2' to investigate the area\n"
     )
     choice = input_validation(choice, "option1", "option2")
     if choice == "option1":
