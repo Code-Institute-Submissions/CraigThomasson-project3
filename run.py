@@ -245,6 +245,7 @@ def loot(player_character, enemy):
             return player_character
         except AttributeError:
             delay_print(f'{enemy.name} has nothing to loot \n')
+            return player_character
 
 
 def weapon_input_validation(choice, weapon_list):
@@ -487,8 +488,9 @@ def goblin_boss_fight(player_character):
         )
         newtown(player_character)
     if choice == "flee":
-        delay_print("You flee the cave and head straight to Newtown")
+        delay_print("You flee the cave and head straight to Newtown\n")
         player_character.cave_save = "fled"
+        print("nts", player_character.newtown_save)
         newtown(player_character)
 
 
@@ -570,7 +572,7 @@ def newtown_no_cave(player_character):
             "You head back to the cart in the road\n"
             "and follow the hidden trail."
         )
-        player_character.newtown = "left"
+        player_character.newtown_save = "left"
         goblin_cave_entrance(player_character)
 
 
@@ -727,10 +729,3 @@ def main():
 
 
 main()
-
-# def test_bench():
-#     player_character = Player(["fire starter"])
-#     goblin_boss_fight(player_character)
-#     print("wining")
-
-# test_bench()
