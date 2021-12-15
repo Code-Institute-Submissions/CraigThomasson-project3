@@ -123,7 +123,7 @@ class Scimitar(Weapon):
     second tier weapon has a chance to do slightly more damage
     """
     def __init__(self):
-        Weapon.__init__(self, 1, 7, "Scimitar")
+        Weapon.__init__(self, 2, 9, "Scimitar")
 
 
 class Axe(Weapon):
