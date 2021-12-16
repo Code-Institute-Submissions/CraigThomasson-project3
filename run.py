@@ -482,7 +482,7 @@ def goblin_boss_check(player_character):
     """
     if player_character.newtown_save == "no":
         goblin_boss_fight(player_character)
-    if player_character.newtown_save == "yes":
+    if player_character.newtown_save == "left":
         goblin_boss_fight_late(player_character)
 
 
@@ -538,7 +538,7 @@ def goblin_boss_fight_late(player_character):
     choice = input_validation(choice, "flee", "fight")
     if choice == "fight":
         player_character = battle(player_character, Goblin_boss())
-        player_character.cave_save = "clear_late"
+        player_character.cave_save = "late_clear"
         delay_print(
             "You have slain to mighty goblin leader but he ate the merchant!\n"
             "You head back to newtown.\n"
@@ -558,6 +558,7 @@ def newtown(player_character):
         "surrounded by a 7ft wooden wall the gate lies open.\n"
     )
     if player_character.cave_save == "no":
+        player_character.newtown_save = "yes"
         newtown_no_cave(player_character)
     if player_character.cave_save == "fled":
         newtown_fled_cave(player_character)
@@ -634,7 +635,7 @@ def ending(player_character):
         ending_two(player_character)
     if player_character.newtown_save == "stay":
         ending_three(player_character)
-    if player_character.cave_save == "late clear":
+    if player_character.cave_save == "late_clear":
         ending_four(player_character)
 
 
@@ -702,7 +703,7 @@ def ending_four(player_character):
         "the Wayfaring Inn to rest up.\n"
         "By the next morning the guards had gathered the much need goods\n"
         "from cave.\n"
-        f"{player_character.name} was named given a job \n"
+        f"{player_character.name} was given a job \n"
         "as a town guard\n"
         "This came with a good pay and standard guard gear\n"
         "so you naturally accept.\n"
@@ -753,6 +754,7 @@ def quit_game(player_character):
         f"It's with a heavy heart I bid the fairwell {player_character.name}\n"
         "I hope to see you again one day on a new adventure!"
         )
+    sys.exit()
 
 
 def main():
