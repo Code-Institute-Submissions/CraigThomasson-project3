@@ -113,10 +113,15 @@ I am unaware of any further bugs.
 Python3
 
 ## Libraries 
-import random
-import pyfiglet
-import time
-import sys
+random
+* This was used to create a random damage modifier for the weapon class
+
+pyfiglet
+* This was used to great the tittle banner that helps give the start screen more a game feel
+
+time, 
+sys
+* Time and sys where need to create the delay_print function
 
 # Credits 
 
