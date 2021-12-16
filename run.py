@@ -547,7 +547,7 @@ def goblin_boss_fight_late(player_character):
         newtown(player_character)
     if choice == "flee":
         delay_print("You flee the cave and head straight to Newtown")
-        player_character.cave_save = "fled"
+        player_character.cave_save = "late_fled"
         print("\n")
         newtown(player_character)
 
@@ -562,6 +562,8 @@ def newtown(player_character):
         newtown_no_cave(player_character)
     if player_character.cave_save == "fled":
         newtown_fled_cave(player_character)
+    if player_character.cave_save == "late_fled":
+        ending_two(player_character)
     if player_character.cave_save == "clear":
         ending(player_character)
     if player_character.cave_save == "late_clear":
