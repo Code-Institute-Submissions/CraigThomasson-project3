@@ -758,10 +758,9 @@ def quit_game(player_character):
 
 
 def main():
-    # banner()
+    banner()
     player_character = get_player_name()
-    # introduction(player_character)
-    ending_four(player_character)
-
+    introduction(player_character)
+    
 
 main()
