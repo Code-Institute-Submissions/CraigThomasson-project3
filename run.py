@@ -761,6 +761,6 @@ def main():
     banner()
     player_character = get_player_name()
     introduction(player_character)
-    
+
 
 main()
