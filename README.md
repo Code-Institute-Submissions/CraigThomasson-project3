@@ -94,7 +94,7 @@ This is used to run the main games.
 
 ## Testing and Bugs
 To test the game I would play through the option locally and on the Heroku live page.
-I ran the code through [pep8](documentation/testing/result_20211216_011434.txt) validation and there were some line spacing issues, which meant I had to reduce the length of line in the story sections. 
+I ran the code through [pep8](documentation/testing/result.txt) validation and there were some line spacing issues, which meant I had to reduce the length of line in the story sections. 
 While play testing I came across a bug in my loot function that caused the game to crash.
 The loot function did not return the player_character when the player chose to continue.  
 I am unaware of any further bugs. 
