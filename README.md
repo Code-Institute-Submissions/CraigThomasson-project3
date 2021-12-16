@@ -14,6 +14,16 @@ To create a game the user wants to play again
 To create a game that has some level of challenge and random chance
 To create a game that is satisfying for the user to play and complete
 
+## program/story flow charts
+
+[program planner](documentation/images/app_flowchart.PNG)
+This was my initial plan for my program. Although the shape of the program is similar, and this was a great guide in the programming process. I have realised in reflection that when planning this project, I underestimated the about of functionality I would need.  I have definitely learn the benefits of proper and realistic planning this project. 
+
+[story planner](/documentation/images/story_planner.PNG)
+
+This story planner really helped me not only with the story but also in anticipating how the code will shape out. This along side the above flow chart where a real boon to my coding process. 
+
+
 ## Game Features 
 Title screen
 The title screen uses Pyfiglet to create a styles banner that gives the app a more game-like feel.
@@ -84,7 +94,7 @@ This is used to run the main games.
 
 ## Testing and Bugs
 To test the game I would play through the option locally and on the Heroku live page.
-I ran the code through pep8 validation and there were some line spacing issues, which meant I had to reduce the length of line in the story sections. 
+I ran the code through [pep8](documentation/testing/result_20211216_011434.txt) validation and there were some line spacing issues, which meant I had to reduce the length of line in the story sections. 
 While play testing I came across a bug in my loot function that caused the game to crash.
 The loot function did not return the player_character when the player chose to continue.  
 I am unaware of any further bugs. 
