@@ -49,7 +49,7 @@ class Player(Entity):
     """
     def __init__(self, items, cave_save, newtown_save):
         Entity.__init__(
-            self, 19, 6,"Player", Rusty_knife(), [Rusty_knife(), Spear()])
+            self, 19, 6, "Player", Rusty_knife(), [Rusty_knife(), Spear()])
         self.items = items
         self.cave_save = cave_save
         self.newtown_save = newtown_save
