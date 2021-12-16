@@ -49,7 +49,7 @@ class Player(Entity):
     """
     def __init__(self, items, cave_save, newtown_save):
         Entity.__init__(
-            self, 19, 5, "Player", Rusty_knife(), [Rusty_knife(), Spear()])
+            self, 19, 6,"Player", Rusty_knife(), [Rusty_knife(), Spear()])
         self.items = items
         self.cave_save = cave_save
         self.newtown_save = newtown_save
@@ -489,7 +489,7 @@ def goblin_boss_check(player_character):
 def goblin_boss_fight(player_character):
     delay_print(
         "You see a flickering light at the end of the tunnel.\n"
-        "As you approach the tunnel bends and opens into a large cavern.\n"
+        "As you approach, the tunnel bends and opens into a large cavern.\n"
         "There is a large cooking pot boiling what looks like stew\n"
         "on a large fire.\n"
         "A large goblin is currently trying to winch\n"
@@ -756,6 +756,7 @@ def quit_game(player_character):
         f"It's with a heavy heart I bid the fairwell {player_character.name}\n"
         "I hope to see you again one day on a new adventure!"
         )
+    print("\n")
     sys.exit()
 
 
