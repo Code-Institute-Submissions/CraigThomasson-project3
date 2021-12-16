@@ -577,8 +577,8 @@ def newtown_no_cave(player_character):
         "'He was meant to arrive yesterday\n"
         "and we are in desperate need of supplies.\n'"
         "You: 'there was a abandoned cart on the road\n"
-        "with a goblin watching it from, the bushes'.\n"
-        "guard: 'You look like your capable would you investigate\n"
+        "with a goblin watching it from the bushes'.\n"
+        "guard: 'You look like you're capable would you investigate\n"
         "'and bring the merchant and his goods back for us?'\n"
     )
     choice = input(
@@ -616,10 +616,10 @@ def newtown_fled_cave(player_character):
         "'Hail stranger “have you seen a merchant on the road?'\n"
         "'He was meant to arrive yesterday\n"
         "and we are in desperate need of supplies.\n'"
-        "You: 'there was a abandoned cart on the road\n"
-        "with a goblin watching it from, the bushes'.\n"
+        "You: 'there was an abandoned cart on the road\n"
+        "with a goblin watching it from the bushes.\n"
         "and tracks that led to a cave.\n"
-        "it look like the goblins where going to eat him\n"
+        "it look like the goblins where going to eat him'\n"
         "guard: 'You look like you had a fright we will take it from here\n"
     )
     print("\n")
@@ -654,7 +654,7 @@ def ending_one(player_character):
         "from cave and seen that the merchant was looked after.\n"
         f"{player_character.name} was named hero in the town and \n"
         "offered a job as defender of the town.\n"
-        "This came with a proper massive sward and Armor\n"
+        "This came with a proper massive sword and Armor\n"
         "so you naturally accept.\n"
         "its at that point fully clad as the towns defender\n"
         "that a mighty raw echoes across the town\n"
@@ -687,9 +687,9 @@ def ending_two(player_character):
 def ending_three(player_character):
     delay_print(
         f"{player_character.name} gets a job as a messanger in town.\n"
-        "As they leave to deliver thire first message\n"
-        "they see a large dragon desend on the town.\n"
-        f"{player_character.name}: 'glad i didnt get that guard job!'\n"
+        "As they leave to deliver thier first message\n"
+        "they see a large dragon desend onto the town.\n"
+        f"{player_character.name}: 'glad I didn't get that guard job!'\n"
     )
     play_again(player_character)
 
@@ -703,8 +703,8 @@ def ending_four(player_character):
         f"The guards see {player_character.name} enter the city.\n"
         "They see that they are battered and bruised and take them to\n"
         "the Wayfaring Inn to rest up.\n"
-        "By the next morning the guards had gathered the much need goods\n"
-        "from cave.\n"
+        "By the next morning the guards had gathered the much needed goods\n"
+        "from the cave.\n"
         f"{player_character.name} was given a job \n"
         "as a town guard\n"
         "This came with a good pay and standard guard gear\n"
